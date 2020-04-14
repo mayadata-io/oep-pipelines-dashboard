@@ -1,0 +1,117 @@
+<div class="body w-100 bg-white " *ngIf="pipeline">
+  <div class="container-fluid mb-5">
+    <div class="row">
+      <div class="col-md-12 my-4">
+        <div class=""><a href="/">
+            <img src="assets/images/company-logos/mayadata.svg" alt="" height="25">
+          </a>
+          <div class="details float-right" style="font-size: 1.7rem;">
+            <a href="https://docs.litmuschaos.io/" target="_blank"
+              class="btn btn-light text-dark" role="button" aria-pressed="true">
+              <i class="fas fa-book-open"></i> Docs</a>
+          </div>
+        </div>
+        <div class="col-md-12 mt-4 px-0">
+          <h4> E2E Pipeline details</h4>
+          <span class="mi mi-icon-logs"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-around">
+      <div class="col-md-4 "> <img src={{platformImage}} alt="" height="70"></div>
+      <div class="col-md-4 text-center" style="vertical-align: bottom">
+        <p class="txt-blue font-weight-bold" style="vertical-align: bottom"></p>
+      </div>
+      <div class="col-md-4 text-right"> <img src="assets/images/cloud/openshift.png" alt="" height="70"> OpenShift 3.10
+      </div>
+    </div>
+    <div class="row bg-openebs-orange text-white my-3">
+      <div class="col-md-4 font-weight-bold text-center">Started_at : {{pipelineStartedAt}}</div>
+      <div class="col-md-4 font-weight-bold text-center">Test Cases : (Executed: {{executedJobs}} / Passed: {{successJobs}} /
+        Failed: {{failedJobs}})</div>
+        <div class="col-md-4 font-weight-bold text-center">{{pipelineFinishedAt}}</div>
+    </div>
+    <div class="row my-2">
+      <div class="col-md-7">
+        <div class="row">
+          <div class="col-md-3 p-0">
+            <a href="{{githubUrl}}" target="_blank">
+              <div class="text-center bg-blue githubUrlPr">
+                <h5 style="display: block;color: white;" class="m-0">PR</h5>
+                <img src="assets/images/icons/pull-request.svg" alt="" height="80" style="padding: 5px;">
+              </div>
+            </a>
+          </div>
+          <div class="col-md-9 bg-grey">
+            <p><span>{{commitId}}@{{commitUser}}</span> <br>
+              {{commitMessage}} </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 justify-content-around my-auto d-inline-flex linkButton" style="cursor: pointer">
+        <div class="text-center gitlab" (click)="buttonURL(gitlabWebURL)"> <img src="assets/images/cloud/GitLab.svg"
+            alt="" height="70" class="p-0 gitlabimg"><button
+            class="btn bg-blue d-flex shadow text-white font-weight-bold"> GitLab
+            Pipeline </button></div>
+        <div class="text-center" (click)="buttonURL(logURL)"><img src="assets/images/icons/Logs.svg" alt="" height="70">
+          <!-- <span class="mi mi-logs p-2" style="font-size: 70px;"></span> -->
+          <button class="btn bg-blue d-flex shadow text-white font-weight-bold"> E2E
+            Logs </button>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let stage of stages">
+      <div class="row stageTable">
+        <div class="bg-secondary col-md-12">
+          <div class=" row">
+            <div class="col-md-10 my-auto text-white">Stage: {{stage.stageName}}</div>
+            <div class="col-md-2">
+              <span style="cursor: default" data-toggle="tooltip" data-placement="bottom"
+                title="Executed jobs / Total Jobs"
+                class="btn bg-white text-dark my-2">{{ stage.noOfSuccessJobs + stage.noOfFailedJobs}}/{{ stage.allJobs.length}}</span>
+              <!-- <i class="far fa-check-circle text-success m-2 bg-white rounded-circle text-center"
+                style="font-size: 20px; padding: 2px;"
+                *ngIf="stage.noOfSuccessJobs > 0 && stage.noOfFailedJobs == 0"></i> -->
+              <span class=" btn bg-white bg-white mx-2" style="font-size: 20px; cursor: default" data-toggle="tooltip"
+                data-placement="bottom" title="Stage status">
+                <i *ngIf="stage.noOfFailedJobs > 0" class="far fa-times-circle text-danger rounded-circle"></i>
+                <i *ngIf="stage.noOfFailedJobs == 0" class="far fa-check-circle text-success rounded-circle"></i>
+              </span>
+              <!-- <i class="far fa-check-circle text-danger m-2 bg-white rounded-circle text-center"
+                style="font-size: 20px; padding: 2px;" *ngIf="stage.noOfFailedJobs > 0">X</i> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 p-0">
+          <table class="table p-0 m-0 bg-white txt-grey">
+            <thead>
+              <tr>
+                <th scope="col" class="txt-blue font-weight-bold">#</th>
+                <th scope="col">Test Summary</th>
+                <th scope="col">Result</th>
+                <th scope="col">duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let stageJob of stage.allJobs">
+                <td class="txt-blue font-weight-bold"> <a
+                    href="https://gitlab.openebs100.io/openebs/e2e-openshift/-/jobs/{{stageJob.id}}"
+                    target="_blank">{{ stageJob.id}}</a>
+                </td>
+                <td *ngIf="stageJob.githuburl != '#'; else nourl"> <a href="{{stageJob.githuburl}}"
+                    target="_blank">{{ stageJob.name }}</a></td>
+                <ng-template #nourl>
+                  <td>{{ stageJob.name }}</td>
+                </ng-template>
+                <td [ngClass]=stageJob.status (click)="buttonURL(logURL)" class="cursor-pointer">{{ stageJob.status}}
+                </td>
+                <td>
+                  {{duration(stageJob.finished_at,stageJob.started_at,stageJob.status)}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

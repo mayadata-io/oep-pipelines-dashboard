@@ -1,0 +1,110 @@
+.e2e-table {
+  height: 55vh;
+  overflow-y: scroll;
+}
+td {
+  vertical-align: middle !important;
+}
+.font-roboto {
+  font-family: "Roboto";
+}
+tbody {
+  font-family: "Open Sans";
+}
+thead {
+  font-family: "Lato";
+}
+.row-table-heading {
+  font-family: "Lato";
+}
+.font-size-14 {
+  font-size: 14px;
+}
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+  width: 6rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.font-size-23 {
+  font-size: 23px;
+}
+
+.build-job-status::after {
+  content: "";
+  padding: 0 10px;
+  border-top: 2px solid #bdc3c7;
+  position: relative;
+  top: 10px;
+  width: 20px;
+  min-width: 10px;
+}
+.build-job-status:nth-last-child(1)::after {
+  content: "";
+  padding: 0px;
+  border: none;
+  border-top: none;
+}
+.build-job-status:hover {
+  ::after {
+    border: none;
+    display: none;
+    padding: 0px;
+  }
+}
+.build-job-status {
+  ::ng-deep .tooltip-inner {
+    width: auto;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: #596164;
+    font-weight: normal;
+  }
+}
+.build-job-icon {
+  cursor: pointer;
+}
+.coverage-content {
+  ::ng-deep .tooltip-inner {
+    white-space: pre-wrap;
+  }
+}
+
+.table-hover tbody tr:hover {
+  background: rgb(250, 246, 223);
+  background: linear-gradient(90deg, rgba(250, 246, 223, 1) 9%, rgba(255, 253, 244, 1) 41%) !important;
+}
+.donut-percent {
+  font-size: 0.9em;
+  line-height: 1;
+  transform: translateY(0.5em);
+  font-weight: bold;
+}
+.commit-pipeline-row{
+  .graph-view-test-coverage{
+    background-color: #ffff;
+  }
+  .view-test-result-button{
+    // display: none;
+    font-size: 12px;
+    height: 0px;
+    visibility: hidden;
+    opacity: 0;
+
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+  }
+}
+.commit-pipeline-row:hover{
+  .graph-view-test-coverage{
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    transition: 0.3s all ease;
+    background-color: #f6f6f6;
+  }
+  .view-test-result-button{
+    // display: block;
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+}

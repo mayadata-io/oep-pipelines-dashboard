@@ -1,0 +1,8 @@
+{
+  "/v3": {
+    "target": "https://director.mayadatastaging.io/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

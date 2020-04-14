@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="25px" viewBox="0 0 23 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Sidebar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="sidebar-cluster-" transform="translate(-23.000000, -803.000000)" stroke="#FFFFFF">
+            <g id="Group" transform="translate(23.000000, 803.774791)">
+                <path d="M3.52078546,20.1317238 L18.8977631,20.1317238 L18.8977631,9.52791741 C18.8977631,5.93806654 15.9876139,3.02791741 12.3977631,3.02791741 L10.0207855,3.02791741 C6.43093459,3.02791741 3.52078546,5.93806654 3.52078546,9.52791741 L3.52078546,20.1317238 Z" id="Rectangle-12"></path>
+                <ellipse id="Oval-2-Copy-7" fill="#FFFFFF" cx="11.2092743" cy="2.36052931" rx="1.93970401" ry="1.96736255"></ellipse>
+                <ellipse id="Oval-2-Copy-8" cx="11.4388223" cy="22.0053389" rx="1.19899444" ry="1.21242301"></ellipse>
+                <path d="M1.26997762,20.13063 L21.607667,20.13063 C21.6065287,20.13063 21.6056058,20.1297072 21.6056058,20.1285688 C21.6056058,20.1274304 21.6065287,20.1265076 21.607667,20.1265076 L1.26997762,20.1265076 C1.27111599,20.1265076 1.27203883,20.1274304 1.27203883,20.1285688 C1.27203883,20.1297072 1.27111599,20.13063 1.26997762,20.13063 Z" id="Rectangle" fill="#262B3E"></path>
+            </g>
+        </g>
+    </g>
+</svg>
