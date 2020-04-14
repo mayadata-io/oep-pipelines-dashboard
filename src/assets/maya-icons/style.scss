@@ -1,0 +1,352 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?w7jl9r');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?w7jl9r#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?w7jl9r') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?w7jl9r') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?w7jl9r##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mi-cloud-up-down .path1 {
+  &:before {
+    content: $mi-cloud-up-down-path1;  
+    color: rgb(39, 43, 61);
+  }
+}
+.mi-cloud-up-down .path2 {
+  &:before {
+    content: $mi-cloud-up-down-path2;  
+    margin-left: -1em;  
+    color: rgb(38, 43, 62);
+  }
+}
+.mi-cloud-up-down .path3 {
+  &:before {
+    content: $mi-cloud-up-down-path3;  
+    margin-left: -1em;  
+    color: rgb(38, 43, 62);
+  }
+}
+.mi-rocket-share {
+  &:before {
+    content: $mi-rocket-share; 
+  }
+}
+.mi-settings {
+  &:before {
+    content: $mi-settings; 
+  }
+}
+.mi-tree-network {
+  &:before {
+    content: $mi-tree-network; 
+  }
+}
+.mi-chevrons-right {
+  &:before {
+    content: $mi-chevrons-right; 
+  }
+}
+.mi-chevrons-left {
+  &:before {
+    content: $mi-chevrons-left; 
+  }
+}
+.mi-chevron-right {
+  &:before {
+    content: $mi-chevron-right; 
+  }
+}
+.mi-chevron-left {
+  &:before {
+    content: $mi-chevron-left; 
+  }
+}
+.mi-chevron-up {
+  &:before {
+    content: $mi-chevron-up; 
+  }
+}
+.mi-chevron-down {
+  &:before {
+    content: $mi-chevron-down; 
+  }
+}
+.mi-x {
+  &:before {
+    content: $mi-x; 
+  }
+}
+.mi-user-switch {
+  &:before {
+    content: $mi-user-switch; 
+  }
+}
+.mi-application {
+  &:before {
+    content: $mi-application; 
+  }
+}
+.mi-mail {
+  &:before {
+    content: $mi-mail; 
+  }
+}
+.mi-check-list {
+  &:before {
+    content: $mi-check-list; 
+  }
+}
+.mi-file {
+  &:before {
+    content: $mi-file; 
+  }
+}
+.mi-bell {
+  &:before {
+    content: $mi-bell; 
+  }
+}
+.mi-play-square {
+  &:before {
+    content: $mi-play-square; 
+  }
+}
+.mi-logs {
+  &:before {
+    content: $mi-logs; 
+  }
+}
+.mi-dashboard {
+  &:before {
+    content: $mi-dashboard; 
+  }
+}
+.mi-search {
+  &:before {
+    content: $mi-search; 
+  }
+}
+.mi-alert-triangle .path1 {
+  &:before {
+    content: $mi-alert-triangle-path1;  
+    color: rgb(38, 43, 62);
+  }
+}
+.mi-alert-triangle .path2 {
+  &:before {
+    content: $mi-alert-triangle-path2;  
+    margin-left: -1em;  
+    color: rgb(39, 43, 61);
+  }
+}
+.mi-alert-triangle .path3 {
+  &:before {
+    content: $mi-alert-triangle-path3;  
+    margin-left: -1em;  
+    color: rgb(39, 43, 61);
+  }
+}
+.mi-slack {
+  &:before {
+    content: $mi-slack; 
+  }
+}
+.mi-align-left {
+  &:before {
+    content: $mi-align-left; 
+  }
+}
+.mi-arrow-right-curve {
+  &:before {
+    content: $mi-arrow-right-curve; 
+  }
+}
+.mi-arrow-left-curve {
+  &:before {
+    content: $mi-arrow-left-curve; 
+  }
+}
+.mi-key {
+  &:before {
+    content: $mi-key; 
+  }
+}
+.mi-cloud-reload {
+  &:before {
+    content: $mi-cloud-reload; 
+  }
+}
+.mi-eye {
+  &:before {
+    content: $mi-eye; 
+  }
+}
+.mi-circle-info {
+  &:before {
+    content: $mi-circle-info; 
+  }
+}
+.mi-check-circle .path1 {
+  &:before {
+    content: $mi-check-circle-path1;  
+    color: rgb(39, 43, 61);
+  }
+}
+.mi-check-circle .path2 {
+  &:before {
+    content: $mi-check-circle-path2;  
+    margin-left: -1em;  
+    color: rgb(38, 43, 62);
+  }
+}
+.mi-id-card {
+  &:before {
+    content: $mi-id-card; 
+  }
+}
+.mi-lightbulb {
+  &:before {
+    content: $mi-lightbulb; 
+  }
+}
+.mi-x-circle {
+  &:before {
+    content: $mi-x-circle; 
+  }
+}
+.mi-home {
+  &:before {
+    content: $mi-home; 
+  }
+}
+.mi-check-square {
+  &:before {
+    content: $mi-check-square; 
+  }
+}
+.mi-database {
+  &:before {
+    content: $mi-database; 
+  }
+}
+.mi-form {
+  &:before {
+    content: $mi-form; 
+  }
+}
+.mi-litmus {
+  &:before {
+    content: $mi-litmus; 
+  }
+}
+.mi-arrow-down-circle {
+  &:before {
+    content: $mi-arrow-down-circle; 
+  }
+}
+.mi-arrow-up-circle {
+  &:before {
+    content: $mi-arrow-up-circle; 
+  }
+}
+.mi-arrow-right-circle {
+  &:before {
+    content: $mi-arrow-right-circle; 
+  }
+}
+.mi-arrow-left-circle {
+  &:before {
+    content: $mi-arrow-left-circle; 
+  }
+}
+.mi-book {
+  &:before {
+    content: $mi-book; 
+  }
+}
+.mi-plug-connect {
+  &:before {
+    content: $mi-plug-connect; 
+  }
+}
+.mi-ellipsis-horizontal {
+  &:before {
+    content: $mi-ellipsis-horizontal; 
+  }
+}
+.mi-ellipsis-vertical {
+  &:before {
+    content: $mi-ellipsis-vertical; 
+  }
+}
+.mi-edit {
+  &:before {
+    content: $mi-edit; 
+  }
+}
+.mi-clipboard-pen {
+  &:before {
+    content: $mi-clipboard-pen; 
+  }
+}
+.mi-trash {
+  &:before {
+    content: $mi-trash; 
+  }
+}
+.mi-chart-bar-up {
+  &:before {
+    content: $mi-chart-bar-up; 
+  }
+}
+.mi-frequency {
+  &:before {
+    content: $mi-frequency; 
+  }
+}
+.mi-cluster {
+  &:before {
+    content: $mi-cluster; 
+  }
+}
+.mi-chevrons-right1 {
+  &:before {
+    content: $mi-chevrons-right1; 
+  }
+}
+.mi-chevrons-left1 {
+  &:before {
+    content: $mi-chevrons-left1; 
+  }
+}
+.mi-chevron-right1 {
+  &:before {
+    content: $mi-chevron-right1; 
+  }
+}
+.mi-chevron-right11 {
+  &:before {
+    content: $mi-chevron-right11; 
+  }
+}
+

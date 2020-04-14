@@ -1,0 +1,335 @@
+<div class="container-fluid mt-5">
+	<div>
+		<div class="container row mx-auto">
+			<div class="col-12 mx-2 row-table-heading" style="border-radius: 20px;background-color: FFFADC;">
+				<div class="row">
+					<div class="col-md-10 align-middle">
+						<div class="mt-4 ml-2">
+							<h4 class="font-weight-bold" style="color: #2E1583;">CI DASHBOARD</h4>
+							<P class="mt-3 text-secondary font-weight-normal font-roboto">Welcome to the OEP CI
+								Dashboard ,CI and
+								E2E
+								practices and Test result of OpenEBS Enterprise Platform.</P>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<img src="assets/images/OEP/welcome.svg" alt="welcome-user" style="margin-top: -1rem">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Table Heading Bar Contains version and filter -->
+		<div class="row row-table-heading mt-5 mb-2">
+			<div class="col-9">
+				<h5 class="font-weight-bold">E2E Pipelines</h5>
+			</div>
+			<div class="col-3 d-flex justify-content-end">
+				<!-- <form #version123 = ngForm>   -->
+				<!-- <div class="form-group my-auto d-none">
+					<label class="mb-0 mr-2">version</label>
+					<select #version123="ngModel" [(ngModel)]='activeVersion'
+						(ngModelChange)="versionFunc(version123.model)" required>
+						<option *ngFor="let ver of version" [value]="ver">{{ver}}</option>
+					</select>
+				</div> -->
+				<!-- </form> -->
+				<!-- {{version123.value.fn | json}} -->
+				<div>
+					<!-- TODO: Need to replace with a better solution instead of using stopTimer() -->
+					<button class="btn" type="button" data-toggle="collapse" data-target="#filterCollapse"
+						aria-expanded="false" aria-controls="filterCollapse" (click)="stopTimer()">
+						<i class="fa fa-filter" aria-hidden="true"></i>
+						<span class="ml-2">filters</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- Filter Collapse Section  -->
+		<div class="row collapse my-2" id="filterCollapse">
+			<div class="col-md-12 border rounded">
+				<div class="d-flex flex-wrap my-2">
+					<label *ngFor="let project of projects" class="text-monospace mx-5">
+						<input type="checkbox" [value]="project"> {{project}}
+					</label>
+				</div>
+			</div>
+		</div>
+		<!-- Dashboard Table Start  -->
+		<!-- <app-lodding-spinners></app-lodding-spinners> -->
+
+		<div class="e2e-table">
+			<table class="table table-hover" id="table-e2e" style="table-layout: fixed;">
+				<thead>
+					<th>ID</th>
+					<th>Repo</th>
+					<th>Branch / Commit</th>
+					<th>Build</th>
+					<th class="text-center">
+						<div>GCP</div>
+						<div
+							class="d-flex justify-content-between border-top font-weight-normal rounded-left rounded-right">
+							<div>test</div>
+							<div>coverage</div>
+						</div>
+					</th>
+					<th class="text-center border-left border-right">
+						<div>Konvoy</div>
+						<div
+							class="d-flex justify-content-between border-top font-weight-normal rounded-left rounded-right">
+							<div>test</div>
+							<div>coverage</div>
+						</div>
+					</th>
+					<th class="text-center">
+						<div>Rancher</div>
+						<div
+							class="d-flex justify-content-between border-top font-weight-normal rounded-left rounded-right">
+							<div>test</div>
+							<div>coverage</div>
+						</div>
+					</th>
+				</thead>
+				<tbody *ngIf="dashboardCommitData != undefined;">
+					<tr *ngFor="let commit of buildData ; let i=index" [attr.data-index]="i"
+						class="commit-pipeline-row">
+						<td> <a href={{commit.web_url}} target="_blank"> #{{commit.pipelineid}}</a></td>
+						<td> <span class="project-name">{{getProject(commit.projectid)}}</span> <span
+								class="d-block text-secondary font-size-14 font-italic"><i class="fa fa-clock-o"
+									aria-hidden="true"></i>{{getTriggerTime(dashboardCommitData[i].committeddate)}}
+								ago</span></td>
+						<!-- <td>
+							<p class="overflow-ellipsis">{{commit.sha}} </p>
+						</td> -->
+						<td> <i class="fa fa-code-fork mr-2 text-primary" aria-hidden="true"></i>{{commit.ref}} / <p
+								class="overflow-ellipsis mb-0">{{commit.sha}} </p>
+						</td>
+						<td>
+							<div class="d-flex justify-content-left">
+								<div *ngFor="let build of commit.jobs" class="build-job-status">
+									<i [ngClass]=statusButton(build.status) class="build-job-icon"
+										ngbTooltip="{{build.name}} | {{build.status}}" placement="bottom"
+										(click)="buildJobURL(commit.projectid, build.id)"></i>
+									<span class="job-seperate-line"></span>
+								</div>
+							</div>
+						</td>
+						<td class="text-center">
+							<a class="d-block bg-primary rounded"
+								routerLink="pipeline/{{getProject(commit.projectid)}}/{{pipelineData[i].pipelineid}}/platform/gcp"
+								routerLinkActive="active" target="_blank">
+								<div class="graph-view-test-coverage rounded">
+									<div class="d-flex justify-content-between">
+										<div *ngIf="commit.status == 'success';else pipelineNotTrigger" class="px-2">
+											<div ngbTooltip="{{ pipelineTooltip(pipelineData[i])}}" placement="right">
+												<i *ngIf="pipelineTooltip(pipelineData[i]) == 'running';else doughutNotFound"
+													class="fas fa-circle-notch text-primary font-size-23 fa-spin"></i>
+												<ng-template #doughutNotFound>
+													<i *ngIf="pipelineTooltip(pipelineData[i]) == '';else doughutSuccessFail"
+														class="fa fa-ban text-secondary font-size-23"></i>
+													<ng-template #doughutSuccessFail>
+														<svg width="25" height="25" viewBox="0 0 42 42" class="donut">
+															<circle class="donut-hole" cx="21" cy="21"
+																r="15.91549430918954" fill="#fff">
+															</circle>
+															<circle class="donut-ring" cx="21" cy="21"
+																r="15.91549430918954" fill="transparent"
+																stroke="#FB6977" stroke-width="6"
+																stroke-dasharray="95 5" stroke-dashoffset="22.5">
+															</circle>
+															<circle class="donut-segment" cx="21" cy="21"
+																r="15.91549430918954" fill="transparent"
+																stroke="#4B515D" stroke-width="6"
+																[attr.stroke-dasharray]="getJobPercentForSkippedPipeline(pipelineData[i])"
+																stroke-dashoffset="22.5">
+															</circle>
+															<circle class="donut-segment" cx="21" cy="21"
+																r="15.91549430918954" fill="transparent"
+																stroke="#009400" stroke-width="6"
+																[attr.stroke-dasharray]="getJobPercentForPipeline(pipelineData[i])"
+																stroke-dashoffset="22.5">
+															</circle>
+														</svg>
+													</ng-template>
+												</ng-template>
+											</div>
+										</div>
+										<div class="my-auto mx-2 coverage-content">
+											<div *ngIf="pipelineTooltip(pipelineData[i]) != '' && commit.status == 'success' && pipelineData[i].percentage_coverage != 'NA';else coverageNA"
+												class="text-dark" ngbTooltip="{{coverageTooltip(pipelineData[i])}}" placement="top">
+												<svg width='50' height='10'>
+													<g>
+														<rect fill='#FB6977' width='100%' height='10' rx="1"></rect>
+														<rect fill='#009400'
+															[ngStyle]="{'width':getCoveragePercentage(pipelineData[i].percentage_coverage)}"
+															height='10'></rect>
+													</g>
+												</svg>
+												<span
+													style="font-size: 12px;">{{pipelineData[i].percentage_coverage}}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="view-test-result-button text-white">
+									<p class="mb-0">GCP test results</p>
+								</div>
+							</a>
+							<ng-template #pipelineNotTrigger>
+								<i class="fa fa-ban text-secondary font-size-23" ngbTooltip="E2E Pipeline Not Triggered"
+									placement="right"></i>
+							</ng-template>
+							<ng-template #coverageNA>
+								<span class="text-dark">NA</span>
+							</ng-template>
+						</td>
+
+						<!-- Konvoy        Test         Data -----------------[] -->
+
+						<td class="text-center border-left border-right">
+							<a class="d-block bg-primary rounded"
+								routerLink="pipeline/{{getProject(commit.projectid)}}/{{konvoyPipelineData[i].pipelineid}}/platform/konvoy"
+								routerLinkActive="active" target="_blank">
+								<div class="graph-view-test-coverage rounded">
+									<div class="d-flex justify-content-between">
+										<div *ngIf="commit.status == 'success';else pipelineNotTrigger" class="px-2">
+											<div ngbTooltip="{{ pipelineTooltip(konvoyPipelineData[i])}}" placement="right">
+												<i *ngIf="pipelineTooltip(konvoyPipelineData[i]) == 'running';else doughutNotFound"
+													class="fas fa-circle-notch text-primary font-size-23 fa-spin"></i>
+												<ng-template #doughutNotFound>
+													<i *ngIf="pipelineTooltip(konvoyPipelineData[i]) == '' || pipelineTooltip(konvoyPipelineData[i]) == 'n/a';else doughutSuccessFail"
+														class="fa fa-ban text-secondary font-size-23"></i>
+													<ng-template #doughutSuccessFail>
+														<svg width="25" height="25" viewBox="0 0 42 42" class="donut">
+															<circle class="donut-hole" cx="21" cy="21"
+																r="15.91549430918954" fill="#fff">
+															</circle>
+															<circle class="donut-ring" cx="21" cy="21"
+																r="15.91549430918954" fill="transparent"
+																stroke="#FB6977" stroke-width="6"
+																stroke-dasharray="95 5" stroke-dashoffset="22.5">
+															</circle>
+															<circle class="donut-segment" cx="21" cy="21"
+																r="15.91549430918954" fill="transparent"
+																stroke="#4B515D" stroke-width="6"
+																[attr.stroke-dasharray]="getJobPercentForSkippedPipeline(konvoyPipelineData[i])"
+																stroke-dashoffset="22.5">
+															</circle>
+															<circle class="donut-segment" cx="21" cy="21"
+																r="15.91549430918954" fill="transparent"
+																stroke="#009400" stroke-width="6"
+																[attr.stroke-dasharray]="getJobPercentForPipeline(konvoyPipelineData[i])"
+																stroke-dashoffset="22.5">
+															</circle>
+														</svg>
+													</ng-template>
+												</ng-template>
+											</div>
+										</div>
+										<div class="my-auto mx-2 coverage-content">
+											<div *ngIf="pipelineTooltip(konvoyPipelineData[i]) != '' && commit.status == 'success' && konvoyPipelineData[i].percentage_coverage != 'NA';else coverageNA"
+												class="text-dark" ngbTooltip="{{coverageTooltip(konvoyPipelineData[i])}}" placement="top">
+												<svg width='50' height='10'>
+													<g>
+														<rect fill='#FB6977' width='100%' height='10' rx="1"></rect>
+														<rect fill='#009400'
+															[ngStyle]="{'width':getCoveragePercentage(konvoyPipelineData[i].percentage_coverage)}"
+															height='10'></rect>
+													</g>
+												</svg>
+												<span
+													style="font-size: 12px;">{{konvoyPipelineData[i].percentage_coverage}}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="view-test-result-button text-white">
+									<p class="mb-0">Konvoy test results</p>
+								</div>
+							</a>
+							<ng-template #pipelineNotTrigger>
+								<i class="fa fa-ban text-secondary font-size-23" ngbTooltip="E2E Pipeline Not Triggered"
+									placement="right"></i>
+							</ng-template>
+							<ng-template #coverageNA>
+								<span class="text-dark">NA</span>
+							</ng-template>
+						</td>
+
+
+						<!-- Rancher        Test         Data -----------------[] -->
+
+						<td class="text-center">
+							<a class="d-block bg-primary rounded"
+								routerLink="pipeline/{{getProject(commit.projectid)}}/{{rancherPipelineData[i].pipelineid}}/platform/rancher"
+								routerLinkActive="active" target="_blank">
+								<div class="graph-view-test-coverage rounded">
+									<div class="d-flex justify-content-between">
+										<div *ngIf="commit.status == 'success';else pipelineNotTrigger" class="px-2">
+											<div ngbTooltip="{{ pipelineTooltip(rancherPipelineData[i])}}" placement="right">
+												<i *ngIf="pipelineTooltip(rancherPipelineData[i]) == 'running';else doughutNotFound"
+													class="fas fa-circle-notch text-primary font-size-23 fa-spin"></i>
+												<ng-template #doughutNotFound>
+													<i *ngIf="pipelineTooltip(rancherPipelineData[i]) == '' || pipelineTooltip(rancherPipelineData[i]) == 'n/a';else doughutSuccessFail"
+														class="fa fa-ban text-secondary font-size-23"></i>
+													<ng-template #doughutSuccessFail>
+														<svg width="25" height="25" viewBox="0 0 42 42" class="donut">
+															<circle class="donut-hole" cx="21" cy="21"
+																r="15.91549430918954" fill="#fff">
+															</circle>
+															<circle class="donut-ring" cx="21" cy="21"
+																r="15.91549430918954" fill="transparent"
+																stroke="#FB6977" stroke-width="6"
+																stroke-dasharray="95 5" stroke-dashoffset="22.5">
+															</circle>
+															<circle class="donut-segment" cx="21" cy="21"
+																r="15.91549430918954" fill="transparent"
+																stroke="#4B515D" stroke-width="6"
+																[attr.stroke-dasharray]="getJobPercentForSkippedPipeline(rancherPipelineData[i])"
+																stroke-dashoffset="22.5">
+															</circle>
+															<circle class="donut-segment" cx="21" cy="21"
+																r="15.91549430918954" fill="transparent"
+																stroke="#009400" stroke-width="6"
+																[attr.stroke-dasharray]="getJobPercentForPipeline(rancherPipelineData[i])"
+																stroke-dashoffset="22.5">
+															</circle>
+														</svg>
+													</ng-template>
+												</ng-template>
+											</div>
+										</div>
+										<div class="my-auto mx-2 coverage-content">
+											<div *ngIf="pipelineTooltip(rancherPipelineData[i]) != '' && commit.status == 'success' && rancherPipelineData[i].percentage_coverage != 'NA';else coverageNA"
+												class="text-dark" ngbTooltip="{{coverageTooltip(rancherPipelineData[i])}}" placement="top">
+												<svg width='50' height='10'>
+													<g>
+														<rect fill='#FB6977' width='100%' height='10' rx="1"></rect>
+														<rect fill='#009400'
+															[ngStyle]="{'width':getCoveragePercentage(pipelineData[i].percentage_coverage)}"
+															height='10'></rect>
+													</g>
+												</svg>
+												<span
+													style="font-size: 12px;">{{pipelineData[i].percentage_coverage}}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="view-test-result-button text-white">
+									<p class="mb-0">Rancher test results</p>
+								</div>
+							</a>
+							<ng-template #pipelineNotTrigger>
+								<i class="fa fa-ban text-secondary font-size-23" ngbTooltip="E2E Pipeline Not Triggered"
+									placement="right"></i>
+							</ng-template>
+							<ng-template #coverageNA>
+								<span class="text-dark">NA</span>
+							</ng-template>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

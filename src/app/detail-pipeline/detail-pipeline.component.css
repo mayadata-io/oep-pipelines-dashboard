@@ -1,0 +1,60 @@
+.body {
+  font-family: 'Open Sans';
+  color: #606060;
+}
+
+.txt-grey {
+  color: #606060;
+}
+
+.bg-blue {
+  background-color: #5C95FF;
+}
+
+.txt-blue {
+  color: #5C95FF;
+}
+
+.filter-grey {
+  filter: grayscale(100%)
+}
+
+.bg-openebs-orange {
+  background-color: #F15A29;
+}
+
+.bg-grey {
+  background-color: #e8e8e8;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+.failed {
+  color: red;
+  font-weight: bold;
+}
+
+table {
+  table-layout: fixed;
+}
+
+.gitlab .gitlabimg {
+  filter: grayscale(100%);
+  transition: 2s;
+
+}
+
+.gitlab:hover .gitlabimg {
+  filter: grayscale(0%);
+}
+
+.githubUrlPr:hover {
+  box-shadow: inset 0 0 10px #000000;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

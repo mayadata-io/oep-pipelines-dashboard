@@ -1,0 +1,286 @@
+@font-face {
+  font-family: 'maya-icons';
+  src: url('/assets/maya-icons/fonts/maya-icons.eot?w7jl9r');
+  src: url('/assets/maya-icons/fonts/maya-icons.eot?w7jl9r#iefix') format('embedded-opentype'),
+    url('/assets/maya-icons/fonts/maya-icons.ttf?w7jl9r') format('truetype'),
+    url('/assets/maya-icons/fonts/maya-icons.woff?w7jl9r') format('woff'),
+    url('/assets/maya-icons/fonts/maya-icons.svg?w7jl9r#maya-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mi {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'maya-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mi-cloud-up-down .path1:before {
+  content: "\e90b";
+  color: rgb(39, 43, 61);
+}
+
+.mi-cloud-up-down .path2:before {
+  content: "\e912";
+  margin-left: -1em;
+  color: rgb(38, 43, 62);
+}
+
+.mi-cloud-up-down .path3:before {
+  content: "\e92d";
+  margin-left: -1em;
+  color: rgb(38, 43, 62);
+}
+
+.mi-rocket-share:before {
+  content: "\e90a";
+}
+
+.mi-settings:before {
+  content: "\e93a";
+}
+
+.mi-tree-network:before {
+  content: "\e92a";
+}
+
+.mi-chevrons-right:before {
+  content: "\e904";
+}
+
+.mi-chevrons-left:before {
+  content: "\e914";
+}
+
+.mi-chevron-right:before {
+  content: "\e933";
+}
+
+.mi-chevron-left:before {
+  content: "\e934";
+}
+
+.mi-chevron-up:before {
+  content: "\e935";
+}
+
+.mi-chevron-down:before {
+  content: "\e937";
+}
+
+.mi-x:before {
+  content: "\e916";
+}
+
+.mi-user-switch:before {
+  content: "\e938";
+}
+
+.mi-application:before {
+  content: "\e901";
+}
+
+.mi-mail:before {
+  content: "\e900";
+}
+
+.mi-check-list:before {
+  content: "\e902";
+}
+
+.mi-file:before {
+  content: "\e903";
+}
+
+.mi-bell:before {
+  content: "\e905";
+}
+
+.mi-play-square:before {
+  content: "\e906";
+}
+
+.mi-logs:before {
+  content: "\e907";
+}
+
+.mi-dashboard:before {
+  content: "\e936";
+}
+
+.mi-search:before {
+  content: "\e908";
+}
+
+.mi-alert-triangle .path1:before {
+  content: "\e909";
+  color: rgb(38, 43, 62);
+}
+
+.mi-alert-triangle .path2:before {
+  content: "\e928";
+  margin-left: -1em;
+  color: rgb(39, 43, 61);
+}
+
+.mi-alert-triangle .path3:before {
+  content: "\e92b";
+  margin-left: -1em;
+  color: rgb(39, 43, 61);
+}
+
+.mi-slack:before {
+  content: "\e90c";
+}
+
+.mi-align-left:before {
+  content: "\e90d";
+}
+
+.mi-arrow-right-curve:before {
+  content: "\e90e";
+}
+
+.mi-arrow-left-curve:before {
+  content: "\e90f";
+}
+
+.mi-key:before {
+  content: "\e910";
+}
+
+.mi-cloud-reload:before {
+  content: "\e911";
+}
+
+.mi-eye:before {
+  content: "\e913";
+}
+
+.mi-circle-info:before {
+  content: "\e915";
+}
+
+.mi-check-circle .path1:before {
+  content: "\e917";
+  color: rgb(39, 43, 61);
+}
+
+.mi-check-circle .path2:before {
+  content: "\e932";
+  margin-left: -1em;
+  color: rgb(38, 43, 62);
+}
+
+.mi-id-card:before {
+  content: "\e918";
+}
+
+.mi-lightbulb:before {
+  content: "\e919";
+}
+
+.mi-x-circle:before {
+  content: "\e91a";
+}
+
+.mi-home:before {
+  content: "\e91b";
+}
+
+.mi-check-square:before {
+  content: "\e91c";
+}
+
+.mi-database:before {
+  content: "\e91d";
+}
+
+.mi-form:before {
+  content: "\e91e";
+}
+
+.mi-litmus:before {
+  content: "\e91f";
+}
+
+.mi-arrow-down-circle:before {
+  content: "\e920";
+}
+
+.mi-arrow-up-circle:before {
+  content: "\e921";
+}
+
+.mi-arrow-right-circle:before {
+  content: "\e922";
+}
+
+.mi-arrow-left-circle:before {
+  content: "\e923";
+}
+
+.mi-book:before {
+  content: "\e924";
+}
+
+.mi-plug-connect:before {
+  content: "\e925";
+}
+
+.mi-ellipsis-horizontal:before {
+  content: "\e926";
+}
+
+.mi-ellipsis-vertical:before {
+  content: "\e927";
+}
+
+.mi-edit:before {
+  content: "\e929";
+}
+
+.mi-clipboard-pen:before {
+  content: "\e92c";
+}
+
+.mi-trash:before {
+  content: "\e939";
+}
+
+.mi-chart-bar-up:before {
+  content: "\e92e";
+}
+
+.mi-frequency:before {
+  content: "\e92f";
+}
+
+.mi-cluster:before {
+  content: "\e931";
+}
+
+.mi-chevrons-right1:before {
+  content: "\e93b";
+}
+
+.mi-chevrons-left1:before {
+  content: "\e93c";
+}
+
+.mi-chevron-right1:before {
+  content: "\e93d";
+}
+
+.mi-chevron-right11:before {
+  content: "\e93e";
+}

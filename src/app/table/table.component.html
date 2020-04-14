@@ -1,0 +1,851 @@
+<div class="row">
+  <!-- table pannel start -->
+  <div class="col-sm-12 p-0 m-0">
+    <div class="body">
+      <div>
+        <div>
+          <img src="assets/images/company-logos/mayadata.svg" alt="" height="65">
+          <!-- Docs link Data start -->
+          <div class="details float-right" style="font-size: 1.7rem;">
+            <a href="https://docs.litmuschaos.io/" target="_blank" class="btn btn-light text-dark" role="button"
+              aria-pressed="true">
+              <i class="fas fa-book-open"></i> Docs</a>
+          </div>
+          <!-- Docs link data END -->
+        </div>
+        <div class="col-md-12 mb-2">
+          <span class="float-right">
+            <h1 style="font-size: 30px;">E2E Pipelines</h1>
+          </span>
+        </div>
+        <div class="row mx-0 col-md-12 background-color-blue">
+          <div class="my-2">
+            <h2 style="color: white;padding-left: 2rem;font-size: 1.5rem;margin: 0;">Stateful Applications</h2>
+          </div>
+        </div>
+        <!-- More button to switch tabs -->
+        <div *ngIf="!isHideShow" class="moreBox" cdkDrag>
+          <div class="col-md-12 background-color-blue cursorDrag" cdkDragHandle>
+            <div class="text-white" style="display: inline-flex;"> Select application row
+              <button (click)="toggleHideShow()" class="float-right p-0 mx-auto border-0 closeBtn"><i
+                  class="fa fa-window-close" aria-hidden="true" style="font-size: 25px;"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-12 px-0">
+            <ul class="nav flex-column moreAppTabs" id="myTab" role="tablist">
+              <li class="nav-item border ">
+                <a class="nav-link" id="l-1-tab active" data-toggle="tab" href="#l-1" role="tab" aria-controls="l-1"
+                  aria-selected="true" (click)="toggleHideShow()">
+                  <img src="assets/images/icons-name/OpenEBS-base.svg" alt="" height="60">
+                  <img src="assets/images/icons-name/nuodb.svg" alt="" height="60">
+                  <img src="assets/images/icons-name/gitlab.svg" alt="" height="60">
+                </a>
+              </li>
+              <li class="nav-item border">
+                <a class="nav-link" id="l-2-tab" data-toggle="tab" href="#l-2" role="tab" aria-controls="l-2"
+                  aria-selected="false" (click)="toggleHideShow()">
+                  <img src="assets/images/icons-name/prometheus.svg" alt="" height="60">
+                  <img src="assets/images/icons-name/elasticsearch.svg" alt="" height="60">
+                  <img src="assets/images/icons-name/mongodb.svg" alt="" height="60">
+                </a>
+              </li>
+              <li class="nav-item border">
+                <a class="nav-link" id="l-3-tab" data-toggle="tab" href="#l-3" role="tab" aria-controls="l-3"
+                  aria-selected="false" (click)="toggleHideShow()">
+                  <img src="assets/images/icons-name/cassandra.svg" alt="" height="70">
+                  <img src="assets/images/icons-name/postgres.svg" alt="" height="70">
+                  <img src="assets/images/icons-name/redis.svg" alt="" height="70">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-12 p-0">
+          <div class="table tab-content scrollbar m-0 w-100" id="scrollbar">
+            <div role="tabpanel" class="tab-pane active" id="l-1">
+              <!--  1st tab for 3 apps-->
+              <div class="row">
+              <div class="col-md-11 p-0">
+                <ul class="nav nav-tabs nav-justified applicationTab">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#openebs" role="tab"
+                      aria-controls="home" aria-selected="true">
+                      <img src="assets/images/icons-name/OpenEBS-base.svg" alt="openebs" height="80">
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#nuodb" role="tab"
+                      aria-controls="profile" aria-selected="false">
+                      <img src="assets/images/icons-name/nuodb.svg" alt="nuodb" height="80">
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#gitlab" role="tab"
+                      aria-controls="messages" aria-selected="false">
+                      <img src="assets/images/icons-name/gitlab.svg" alt="gitlab" height="80">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-1 bg-light">
+                <div class="justify-content-center bg-light pt-5">
+                  <button (click)="toggleHideShow()" class="btnMore p-0 m-0 border-0 bg-white"
+                    style="position: relative;top:40%;outline: none;">
+                    <i class="fa fa-th menuIcon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+              <div class="col-md-12 table tab-content w-100 p-0 m-0">
+                <div role="tabpanel" class="tab-pane active" id="openebs">
+                  <!-- OPENEBS-BASE -->
+                  <div class="row">
+                    <div class="col-sm-12 tab-branch pr-0 ">
+                      <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link" href="#masterOpenebs" role="tab" data-toggle="tab">
+                            <h4 style="font-size: 1rem;">v1.4.x</h4>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#release-branch" role="tab" data-toggle="tab">
+                            <h4 style="font-size: 1em;">v1.4.0</h4>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-12 table tab-content w-100 pt-0">
+                    <div role="tabpanel" class="tab-pane" id="masterOpenebs">
+                      <table class="table">
+                        <thead>
+                          <tr class="text-center">
+                            <th class="align-bottom ">Trigger/#</th>
+                            <th class="align-bottom ">Build</th>
+                            <th class="d-flex align-items-center justify-content-center">
+                              <span style="pointer-events: none;" class="mx-5"><img style="padding:2px;" height="35px;"
+                                  src="assets/images/cloud/openshift.png">
+                                <p style="font-size: 11px;">OPENSHIFT 3.10
+                                </p>
+                              </span>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="restItemsrc2 != undefined;">
+                          <tr *ngFor=" let post of restItemsrc2; let i=index" [attr.data-index]="i">
+                            <td class="text-center cursor-default">
+                              <p style="font-size: 16px;" class="font-weight-bold text-secondary">
+                                {{post.project}}/{{ getCommit(i,restItemsrc2) |
+                                                slice:0:8 }}</p>
+                              <p class="font-size-12 font-weight-bold">Commit:
+                                {{ updated(i, restItemsrc2) }}</p>
+                            </td>
+                            <td class="text-center">
+                              <div *ngIf="post.project != 'e2e-openshift';else NA">
+                                <button placement="bottom" ngbTooltip="{{buildTooltip(i, restItemsrc2)}}"
+                                  (click)="clickit(buildWeburl(i, restItemsrc2));"
+                                  [ngClass]="buttonStatusClass(buildStatus(i, restItemsrc2))">
+                                  <div>
+                                    <i style="font-size:13px" [ngClass]="iconClass(buildStatus(i, restItemsrc2))"></i>
+                                    <a style="margin-left:5px; font-size:15px">{{buildStatus(i, restItemsrc2)}}</a>
+                                  </div>
+                                </button>
+                              </div>
+                              <ng-template #NA>
+                                <p class="cursor-default">Manual</p>
+                              </ng-template>
+                            </td>
+                            <td class="d-flex justify-content-center">
+                              <!-- Openshift PIPELINES -->
+                              <a routerLink="detail-pipeline/{{pipelineBranch(post.ref)}}/{{post.openshift_pid}}"
+                                routerLinkActive="active" target="_blank"
+                                style="padding-bottom:10px;margin-left:80px; margin-right:80px;cursor: pointer"><span
+                                  placement="bottom" ngbTooltip="{{ pipelineTooltip(i, restItemsrc3) }}"
+                                  [ngStyle]="{'pointer-events': pipelineTooltip(i, restItemsrc3) === 'pending' ? 'none' : 'initial' }">
+                                  <i *ngIf="pipelineTooltip(i, restItemsrc3) == 'running';else btncanceled"
+                                    style="font-size:19px;"
+                                    class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                                  <ng-template #btncanceled>
+                                    <i *ngIf="pipelineTooltip(i, restItemsrc3) == 'canceled';else btnDisabled"
+                                      style="font-size:19px;" class='fa fa-ban btn btn-txt btn-outline-secondary'></i>
+                                  <ng-template #btnDisabled>
+                                    <i *ngIf="pipelineTooltip(i, restItemsrc3) == '';else donutGraph"
+                                      style="font-size:19px;"
+                                      class='fa fa-ban btn btn-txt btn-outline-primary disabled'></i>
+                                    <ng-template #donutGraph>
+                                      <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                        <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                        </circle>
+                                        <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954"
+                                          fill="transparent" stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5"
+                                          stroke-dashoffset="22.5">
+                                        </circle>
+                                        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954"
+                                          fill="transparent" stroke="#009400" stroke-width="6"
+                                          [attr.stroke-dasharray]="getJobPercentForGoPipeline(i, restItemsrc3, '0')"
+                                          stroke-dashoffset="22.5"></circle>
+                                      </svg>
+                                    </ng-template>
+                                    </ng-template>
+                                  </ng-template>
+                                </span></a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                    </div>
+                    <div role="tabpanel" class="tab-pane active" id="release-branch">
+                      <table class="table table-borderless">
+                        <thead>
+                          <tr class="text-center">
+                            <th class="align-bottom ">Trigger/TimeStamp</th>
+                            <th class="d-flex align-items-center justify-content-center">
+                              <span class="mx-5 platform"><img class="platform-img"
+                                  src="assets/images/cloud/openshift.png">
+                                <p class="platform-name">OPENSHIFT 3.10</p>
+                              </span>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="restItemsRelease != undefined;">
+                          <tr *ngFor=" let post of restItemsRelease; let i=index" [attr.data-index]="i">
+                            <td class="text-center cursor-default px-5">
+                              <p class="font-size-13 font-weight-bold">{{ getReleaseName(i, restItemsRelease) }}</p>
+                              <p class="font-size-12 font-weight-bold">Commit:
+                                <span style="font-size: 13px;color: #606060">{{ updated(i, restItemsRelease) }}</span>
+                              </p>
+                            </td>
+                            <td class="d-flex justify-content-center">
+                              <!-- Openshift PIPELINES -->
+                              <a routerLink="detail-pipeline/{{post.ref}}/{{post.id}}" routerLinkActive="active"
+                                target="_blank"
+                                style="padding-bottom:10px;margin-left:80px; margin-right:80px;cursor: pointer"><span
+                                  placement="bottom" ngbTooltip="{{ pipelineTooltip(i, restItemsRelease) }}"
+                                  [ngStyle]="{'pointer-events': pipelineTooltip(i, restItemsRelease) === 'pending' ? 'none' : 'initial' }">
+                                  <i *ngIf="pipelineTooltip(i, restItemsRelease) == 'running';else btncanceled"
+                                    style="font-size:19px;"
+                                    class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                                  <ng-template #btncanceled>
+                                    <i *ngIf="pipelineTooltip(i, restItemsRelease) == 'canceled';else btnDisabled"
+                                      style="font-size:19px;" class='fa fa-ban btn btn-txt btn-outline-secondary'></i>
+                                  <ng-template #btnDisabled>
+                                    <i *ngIf="pipelineTooltip(i, restItemsRelease) == '';else donutGraph"
+                                      style="font-size:19px;"
+                                      class='fa fa-ban btn btn-txt btn-outline-primary disabled'></i>
+                                    <ng-template #donutGraph>
+                                      <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                        <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                        </circle>
+                                        <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954"
+                                          fill="transparent" stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5"
+                                          stroke-dashoffset="22.5">
+                                        </circle>
+                                        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954"
+                                          fill="transparent" stroke="#009400" stroke-width="6"
+                                          [attr.stroke-dasharray]="getJobPercentForGoPipeline(i, restItemsRelease, '0')"
+                                          stroke-dashoffset="22.5"></circle>
+                                      </svg>
+                                    </ng-template>
+                                    </ng-template>
+                                  </ng-template>
+                                </span></a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                    </div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="nuodb">
+                  <!-- NUODB -->
+                  <table class="table table-borderless bg-white">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Trigger</th>
+                        <th>Build</th>
+                        <th style="text-align:center">E2E Pipelines</th>
+                      </tr>
+                      <tr class="text-center">
+                        <td></td>
+                        <td></td>
+                        <td class="d-flex align-items-center justify-content-center">
+                          <span style="pointer-events: none;" class="mx-5"><img style="padding:2px;" height="35px;"
+                              src="assets/images/cloud/openshift.png">
+                            <p style="font-size: 11px;">OPENSHIFT 3.10</p>
+                          </span>
+                        </td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="text-center" *ngFor="let post of restItems.dashboard['pipelines'][0]; let i = index"
+                        [attr.data-index]="i">
+                        <td class="text-center">
+                          <h3 style="font-size: 20px ;padding-left: 2rem" class="text-center">Manual</h3>
+                        </td>
+                        <td>
+                          1.4.x
+                        </td>
+                        <td class="d-flex justify-content-center">
+                          <!-- PACKET PIPELINES -->
+                          <a routerLink="detail-pipeline/{{post.ref}}/{{post.id}}" routerLinkActive="active"
+                            target="_blank"><span placement="bottom"
+                              ngbTooltip="{{ pipelineTooltip(i, restItems.dashboard['pipelines'][0]) }}"
+                              [ngStyle]="{'pointer-events': pipelineTooltip(i, restItems.dashboard['pipelines'][0]) === 'pending' ? 'none' : 'initial' }"
+                              style="cursor:pointer; padding-bottom:10px;margin-left:31.9px; margin-right:31.9px;">
+                              <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][0]) == 'running';else donutGraphPacket"
+                                style="font-size:19px;"
+                                class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                              <ng-template #donutGraphPacket>
+                                <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][0]) == 'pending';else statusGraphPacket"
+                                  style="font-size:19px;" class='fa fa-clock-o btn btn-txt btn-outline-warning'></i>
+                                <ng-template #statusGraphPacket>
+                                  <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                    <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                    </circle>
+                                    <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                      stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5"
+                                      stroke-dashoffset="22.5">
+                                    </circle>
+                                    <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954"
+                                      fill="transparent" stroke="#009400" stroke-width="6"
+                                      [attr.stroke-dasharray]="getJobPercentFromPipeline(i, restItems.dashboard, '0')"
+                                      stroke-dashoffset="22.5"></circle>
+                                  </svg>
+                                </ng-template>
+                              </ng-template>
+                            </span></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="gitlab">
+                  <!-- --------------------------GITLAB------------------------------------(START) -->
+                  <table class="table table-borderless bg-white">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Trigger</th>
+                        <th>Build</th>
+                        <th style="text-align:center">E2E Pipelines</th>
+                      </tr>
+                      <tr class="text-center">
+                        <td></td>
+                        <td></td>
+                        <td class="d-flex align-items-center justify-content-center">
+                          <span style="pointer-events: none;" class="mx-5"><img style="padding:2px;" height="35px;"
+                              src="assets/images/cloud/openshift.png">
+                            <p style="font-size: 11px;">OPENSHIFT 3.10</p>
+                          </span>
+                        </td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="text-center" *ngFor="let post of restItems.dashboard['pipelines'][1]; let i = index"
+                        [attr.data-index]="i">
+                        <td class="text-center">
+                          <h3 style="font-size: 20px ;padding-left: 2rem" class="text-center">Manual</h3>
+                        </td>
+                        <td>
+                          1.4.x
+                        </td>
+                        <td class="d-flex justify-content-center">
+                          <!-- PACKET PIPELINES -->
+                          <a routerLink="detail-pipeline/{{post.ref}}/{{post.id}}" routerLinkActive="active"
+                            target="_blank"><span placement="bottom"
+                              ngbTooltip="{{ pipelineTooltip(i, restItems.dashboard['pipelines'][1]) }}"
+                              [ngStyle]="{'pointer-events': pipelineTooltip(i, restItems.dashboard['pipelines'][1]) === 'pending' ? 'none' : 'initial' }"
+                              style="cursor:pointer; padding-bottom:10px;margin-left:31.9px; margin-right:31.9px;">
+                              <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][1]) == 'running';else donutGraphPacket"
+                                style="font-size:19px;"
+                                class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                              <ng-template #donutGraphPacket>
+                                <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][1]) == 'pending';else statusGraphPacket"
+                                  style="font-size:19px;" class='fa fa-clock-o btn btn-txt btn-outline-warning'></i>
+                                <ng-template #statusGraphPacket>
+                                  <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                    <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                    </circle>
+                                    <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                      stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5"
+                                      stroke-dashoffset="22.5">
+                                    </circle>
+                                    <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954"
+                                      fill="transparent" stroke="#009400" stroke-width="6"
+                                      [attr.stroke-dasharray]="getJobPercentFromPipeline(i, restItems.dashboard, '1')"
+                                      stroke-dashoffset="22.5"></circle>
+                                  </svg>
+                                </ng-template>
+                              </ng-template>
+                            </span>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                  <!-- -----(END)--------------------GITLAB------------------------------- -->
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="l-2">
+              <div class="row">
+              <div class="col-md-11 p-0">
+                <ul class="nav nav-tabs nav-justified applicationTab">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#Prometheus" role="tab"
+                      aria-controls="" aria-selected="true">
+                      <img src="assets/images/icons-name/prometheus.svg" alt="openebs" height="80">
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#ElasticSearch" role="tab"
+                      aria-controls="" aria-selected="false">
+                      <img src="assets/images/icons-name/elasticsearch.svg" alt="promethueus" height="80">
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#MongoDB" role="tab" aria-controls=""
+                      aria-selected="false">
+                      <img src="assets/images/icons-name/mongodb.svg" alt="gitlab" height="80">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-1 bg-light">
+                <div class="justify-content-center bg-light pt-5">
+                <button (click)="toggleHideShow()" class="btnMore p-0 m-0 border-0 bg-white"
+                  style="position: relative;top:40%;outline: none;">
+                  <i class="fa fa-th menuIcon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-12 table tab-content w-100 pt-0">
+              <div role="tabpanel" class="tab-pane active" id="Prometheus">
+                <!-- --------------------------Promethueus------------------------------------(START) -->
+                <table class="table table-borderless bg-white">
+                  <thead>
+                    <tr class="text-center">
+                      <th>Trigger</th>
+                      <th>Build</th>
+                      <th style="text-align:center">E2E Pipelines</th>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                      <td class="d-flex align-items-center justify-content-center">
+                        <span style="pointer-events: none;" class="mx-5"><img style="padding:2px;" height="35px;"
+                            src="assets/images/cloud/openshift.png">
+                          <p style="font-size: 11px;">OPENSHIFT 3.10</p>
+                        </span>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center" *ngFor="let post of restItems.dashboard['pipelines'][2]; let i = index"
+                      [attr.data-index]="i">
+                      <td class="text-center">
+                        <h3 style="font-size: 20px ;padding-left: 2rem" class="text-center">Manual</h3>
+                      </td>
+                      <td>
+                        1.4.x
+                      </td>
+                      <td class="d-flex justify-content-center">
+                        <!-- PACKET PIPELINES -->
+                        <a routerLink="detail-pipeline/{{post.ref}}/{{post.id}}" routerLinkActive="active"
+                          target="_blank"><span placement="bottom" placement="bottom"
+                            ngbTooltip="{{ pipelineTooltip(i, restItems.dashboard['pipelines'][2]) }}"
+                            [ngStyle]="{'pointer-events': pipelineTooltip(i, restItems.dashboard['pipelines'][2]) === 'pending' ? 'none' : 'initial' }"
+                            style="cursor:pointer; padding-bottom:10px;margin-left:31.9px; margin-right:31.9px;">
+                            <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][2]) == 'running';else donutGraphPacket"
+                              style="font-size:19px;"
+                              class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                            <ng-template #donutGraphPacket>
+                              <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][2]) == 'pending';else statusGraphPacket"
+                                style="font-size:19px;" class='fa fa-clock-o btn btn-txt btn-outline-warning'></i>
+                              <ng-template #statusGraphPacket>
+                                <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                  </circle>
+                                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5" stroke-dashoffset="22.5">
+                                  </circle>
+                                  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#009400" stroke-width="6"
+                                    [attr.stroke-dasharray]="getJobPercentFromPipeline(i, restItems.dashboard, '2')"
+                                    stroke-dashoffset="22.5"></circle>
+                                </svg>
+                              </ng-template>
+                            </ng-template>
+                          </span></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                <!-- -----(END)--------------------prometheus------------------------------- -->
+              </div>
+              <div role="tabpanel" class="tab-pane" id="ElasticSearch">
+                <!-- --------------------------ElasticSearch------------------------------------(START) -->
+                <table class="table table-borderless bg-white">
+                  <thead>
+                    <tr class="text-center">
+                      <th>Trigger</th>
+                      <th>Build</th>
+                      <th style="text-align:center">E2E Pipelines</th>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                      <td class="d-flex align-items-center justify-content-center">
+                        <span style="pointer-events: none;" class="mx-5"><img style="padding:2px;" height="35px;"
+                            src="assets/images/cloud/openshift.png">
+                          <p style="font-size: 11px;">OPENSHIFT 3.10</p>
+                        </span>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center" *ngFor="let post of restItems.dashboard['pipelines'][4]; let i = index"
+                      [attr.data-index]="i">
+                      <td class="text-center">
+                        <h3 style="font-size: 20px ;padding-left: 2rem" class="text-center">Manual</h3>
+                      </td>
+                      <td>1.4.x
+                      </td>
+                      <td class="d-flex justify-content-center">
+                        <!-- PACKET PIPELINES -->
+                        <a routerLink="detail-pipeline/{{post.ref}}/{{post.id}}" routerLinkActive="active"
+                          target="_blank"><span placement="bottom"
+                            ngbTooltip="{{ pipelineTooltip(i, restItems.dashboard['pipelines'][4]) }}"
+                            [ngStyle]="{'pointer-events': pipelineTooltip(i, restItems.dashboard['pipelines'][4]) === 'pending' ? 'none' : 'initial' }"
+                            style="cursor:pointer; padding-bottom:10px;margin-left:31.9px; margin-right:31.9px;">
+                            <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][4]) == 'running';else donutGraphPacket"
+                              style="font-size:19px;"
+                              class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                            <ng-template #donutGraphPacket>
+                              <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][4]) == 'pending';else statusGraphPacket"
+                                style="font-size:19px;" class='fa fa-clock-o btn btn-txt btn-outline-warning'></i>
+                              <ng-template #statusGraphPacket>
+                                <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                  </circle>
+                                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5" stroke-dashoffset="22.5">
+                                  </circle>
+                                  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#009400" stroke-width="6"
+                                    [attr.stroke-dasharray]="getJobPercentFromPipeline(i, restItems.dashboard, '4')"
+                                    stroke-dashoffset="22.5"></circle>
+                                </svg>
+                              </ng-template>
+                            </ng-template>
+                          </span></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                <!-- -----(END)--------------------ElasticSearch------------------------------- -->
+              </div>
+              <div role="tabpanel" class="tab-pane" id="MongoDB">
+                <!-- --------------------------MongoDB------------------------------------(START) -->
+                <table class="table table-borderless bg-white">
+                  <thead>
+                    <tr class="text-center">
+                      <th>Trigger</th>
+                      <th>Build</th>
+                      <th style="text-align:center">E2E Pipelines</th>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                      <td class="d-flex align-items-center justify-content-center">
+                        <span style="pointer-events: none;" class="mx-5"><img style="padding:2px;" height="35px;"
+                            src="assets/images/cloud/openshift.png">
+                          <p style="font-size: 11px;">OPENSHIFT 3.10</p>
+                        </span>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center" *ngFor="let post of restItems.dashboard['pipelines'][5]; let i = index"
+                      [attr.data-index]="i">
+                      <td class="text-center">
+                        <h3 style="font-size: 20px ;padding-left: 2rem" class="text-center">Manual</h3>
+                      </td>
+                      <td>1.4.x
+                      </td>
+                      <td class="d-flex justify-content-center">
+                        <!-- PACKET PIPELINES -->
+                        <a routerLink="detail-pipeline/{{post.ref}}/{{post.id}}" routerLinkActive="active"
+                          target="_blank"><span placement="bottom"
+                            ngbTooltip="{{ pipelineTooltip(i, restItems.dashboard['pipelines'][5]) }}"
+                            [ngStyle]="{'pointer-events': pipelineTooltip(i, restItems.dashboard['pipelines'][5]) === 'pending' ? 'none' : 'initial' }"
+                            style="cursor:pointer; padding-bottom:10px;margin-left:31.9px; margin-right:31.9px;">
+                            <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][5]) == 'running';else donutGraphPacket"
+                              style="font-size:19px;"
+                              class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                            <ng-template #donutGraphPacket>
+                              <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][5]) == 'pending';else statusGraphPacket"
+                                style="font-size:19px;" class='fa fa-clock-o btn btn-txt btn-outline-warning'></i>
+                              <ng-template #statusGraphPacket>
+                                <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                  </circle>
+                                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5" stroke-dashoffset="22.5">
+                                  </circle>
+                                  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#009400" stroke-width="6"
+                                    [attr.stroke-dasharray]="getJobPercentFromPipeline(i, restItems.dashboard, '5')"
+                                    stroke-dashoffset="22.5"></circle>
+                                </svg>
+                              </ng-template>
+                            </ng-template>
+                          </span></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                <!-- -----(END)--------------------MongoDB------------------------------- -->
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="l-3">
+            <div class="row">
+            <div class="col-md-11 p-0">
+              <ul class="nav nav-tabs nav-justified applicationTab">
+                <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#Cassandra" role="tab"
+                    aria-controls="" aria-selected="true">
+                    <img src="assets/images/icons-name/cassandra.svg" alt="openebs" height="100">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Postgresql" role="tab" aria-controls=""
+                    aria-selected="false">
+                    <img src="assets/images/icons-name/postgres.svg" alt="postgresql" height="100">
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="messages-tab" data-toggle="tab" href="#Redis" role="tab" aria-controls=""
+                    aria-selected="false">
+                    <img src="assets/images/icons-name/redis.svg" alt="gitlab" height="100">
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-1 bg-light">
+              <div class="justify-content-center bg-light pt-5">
+                <button (click)="toggleHideShow()" class="btnMore p-0 m-0 border-0 bg-white"
+                  style="position: relative;top:40%;outline: none;">
+                  <i class="fa fa-th menuIcon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+            <div class="col-md-12 table tab-content w-100 pt-0">
+              <div role="tabpanel" class="tab-pane active" id="Cassandra">
+                <!-- --------------------------Cassandra------------------------------------(START) -->
+                <table class="table table-borderless bg-white">
+                  <thead>
+                    <tr class="text-center">
+                      <th>Trigger</th>
+                      <th>Build</th>
+                      <th style="text-align:center">E2E Pipelines</th>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                      <td class="d-flex align-items-center justify-content-center">
+                        <span style="pointer-events: none;" class="mx-5"><img style="padding:2px;" height="35px;"
+                            src="assets/images/cloud/openshift.png">
+                          <p style="font-size: 11px;">OPENSHIFT 3.10</p>
+                        </span>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center" *ngFor="let post of restItems.dashboard['pipelines'][6]; let i = index"
+                      [attr.data-index]="i">
+                      <td class="text-center">
+                        <h3 style="font-size: 20px ;padding-left: 2rem" class="text-center">Manual</h3>
+                      </td>
+                      <td>
+                        1.4.x
+                      </td>
+                      <td class="d-flex justify-content-center">
+                        <!-- PACKET PIPELINES -->
+                        <a routerLink="detail-pipeline/{{post.ref}}/{{post.id}}" routerLinkActive="active"
+                          target="_blank"><span placement="bottom"
+                            ngbTooltip="{{ pipelineTooltip(i, restItems.dashboard['pipelines'][6]) }}"
+                            [ngStyle]="{'pointer-events': pipelineTooltip(i, restItems.dashboard['pipelines'][6]) === 'pending' ? 'none' : 'initial' }"
+                            style="cursor:pointer; padding-bottom:10px;margin-left:31.9px; margin-right:31.9px;">
+                            <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][6]) == 'running';else donutGraphPacket"
+                              style="font-size:19px;"
+                              class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                            <ng-template #donutGraphPacket>
+                              <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][6]) == 'pending';else statusGraphPacket"
+                                style="font-size:19px;" class='fa fa-clock-o btn btn-txt btn-outline-warning'></i>
+                              <ng-template #statusGraphPacket>
+                                <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                  </circle>
+                                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5" stroke-dashoffset="22.5">
+                                  </circle>
+                                  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#009400" stroke-width="6"
+                                    [attr.stroke-dasharray]="getJobPercentFromPipeline(i, restItems.dashboard, '6')"
+                                    stroke-dashoffset="22.5"></circle>
+                                </svg>
+                              </ng-template>
+                            </ng-template>
+                          </span></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                <!-- -----(END)--------------------Cassandra------------------------------- -->
+              </div>
+              <div role="tabpanel" class="tab-pane" id="Postgresql">
+                <!-- --------------------------postgresql------------------------------------(START) -->
+                <table class="table table-borderless bg-white">
+                  <thead>
+                    <tr class="text-center">
+                      <th>Trigger</th>
+                      <th>Build</th>
+                      <th style="text-align:center">E2E Pipelines</th>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                      <td class="d-flex align-items-center justify-content-center">
+                        <span style="pointer-events: none;" class="mx-5"><img style="padding:2px;" height="35px;"
+                            src="assets/images/cloud/openshift.png">
+                          <p style="font-size: 11px;">OPENSHIFT 3.10</p>
+                        </span>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center" *ngFor="let post of restItems.dashboard['pipelines'][7]; let i = index"
+                      [attr.data-index]="i">
+                      <td class="text-center">
+                        <h3 style="font-size: 20px ;padding-left: 2rem" class="text-center">Manual</h3>
+                      </td>
+                      <td> 1.4.x
+                      </td>
+                      <td class="d-flex justify-content-center">
+                        <!-- PACKET PIPELINES -->
+                        <a routerLink="detail-pipeline/{{post.ref}}/{{post.id}}" routerLinkActive="active"
+                          target="_blank"><span placement="bottom"
+                            ngbTooltip="{{ pipelineTooltip(i, restItems.dashboard['pipelines'][7]) }}"
+                            [ngStyle]="{'pointer-events': pipelineTooltip(i, restItems.dashboard['pipelines'][7]) === 'pending' ? 'none' : 'initial' }"
+                            style="cursor:pointer; padding-bottom:10px;margin-left:31.9px; margin-right:31.9px;">
+                            <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][7]) == 'running';else donutGraphPacket"
+                              style="font-size:19px;"
+                              class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                            <ng-template #donutGraphPacket>
+                              <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][7]) == 'pending';else statusGraphPacket"
+                                style="font-size:19px;" class='fa fa-clock-o btn btn-txt btn-outline-warning'></i>
+                              <ng-template #statusGraphPacket>
+                                <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                  </circle>
+                                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5" stroke-dashoffset="22.5">
+                                  </circle>
+                                  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#009400" stroke-width="6"
+                                    [attr.stroke-dasharray]="getJobPercentFromPipeline(i, restItems.dashboard, '7')"
+                                    stroke-dashoffset="22.5"></circle>
+                                </svg>
+                              </ng-template>
+                            </ng-template>
+                          </span></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                <!-- -----(END)--------------------postgresql------------------------------- -->
+              </div>
+              <div role="tabpanel" class="tab-pane" id="Redis">
+                <!-- --------------------------redis------------------------------------(START) -->
+                <table class="table table-borderless bg-white">
+                  <thead>
+                    <tr class="text-center">
+                      <th>Trigger</th>
+                      <th>Build</th>
+                      <th style="text-align:center">E2E Pipelines</th>
+                    </tr>
+                    <tr class="text-center">
+                      <td></td>
+                      <td></td>
+                      <td class="d-flex align-items-center justify-content-center">
+                        <span style="pointer-events: none;" class="mx-5"><img style="padding:2px;" height="35px;"
+                            src="assets/images/cloud/openshift.png">
+                          <p style="font-size: 11px;">OPENSHIFT 3.10</p>
+
+                        </span>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center" *ngFor="let post of restItems.dashboard['pipelines'][3]; let i = index"
+                      [attr.data-index]="i">
+                      <td class="text-center">
+                        <h3 style="font-size: 20px ;padding-left: 2rem" class="text-center">Manual</h3>
+                      </td>
+                      <td>
+                        1.4.x
+                      </td>
+                      <td class="d-flex justify-content-center">
+                        <!-- PACKET PIPELINES -->
+                        <a routerLink="detail-pipeline/{{post.ref}}/{{post.id}}" routerLinkActive="active"
+                          target="_blank">
+                          <span placement="bottom"
+                            ngbTooltip="{{ pipelineTooltip(i, restItems.dashboard['pipelines'][3]) }}"
+                            [ngStyle]="{'pointer-events': pipelineTooltip(i, restItems.dashboard['pipelines'][3]) === 'pending' ? 'none' : 'initial' }"
+                            style="cursor:pointer; padding-bottom:10px;margin-left:31.9px; margin-right:31.9px;">
+                            <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][3]) == 'running';else donutGraphPacket"
+                              style="font-size:19px;"
+                              class='fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary'></i>
+                            <ng-template #donutGraphPacket>
+                              <i *ngIf="pipelineTooltip(i, restItems.dashboard['pipelines'][3]) == 'pending';else statusGraphPacket"
+                                style="font-size:19px;" class='fa fa-clock-o btn btn-txt btn-outline-warning'></i>
+                              <ng-template #statusGraphPacket>
+                                <svg width="20" height="20" viewBox="0 0 42 42" class="donut">
+                                  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff">
+                                  </circle>
+                                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#ff0000" stroke-width="6" stroke-dasharray="95 5" stroke-dashoffset="22.5">
+                                  </circle>
+                                  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent"
+                                    stroke="#009400" stroke-width="6"
+                                    [attr.stroke-dasharray]="getJobPercentFromPipeline(i, restItems.dashboard, '3')"
+                                    stroke-dashoffset="22.5"></circle>
+                                </svg>
+                              </ng-template>
+                            </ng-template>
+                          </span></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <app-lodding-spinners class="row" *ngIf="showSpinnerTable;"></app-lodding-spinners>
+                <!-- -----(END)--------------------redis------------------------------- -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

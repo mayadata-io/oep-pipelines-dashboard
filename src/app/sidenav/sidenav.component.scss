@@ -1,0 +1,67 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+  
+a{
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+  // padding-left: 10px;
+  padding: .2rem 1rem; 
+  background-color: transparent;
+}
+
+nav {
+  padding-top: 10px;
+}
+  
+a:hover {
+  border-radius: 0px 5px 5px 0px;
+  background: #6976F4;
+  text-decoration: none;
+}
+  
+li.active > a {
+  background-color: #3C48AF;
+  border-radius: 0px 5px 5px 0px;
+  outline:none !important;
+}
+
+#sidebar[_ngcontent-c1] li[_ngcontent-c1] a[_ngcontent-c1] {
+  margin: 6px 0px 6px 0;
+  font-size: 14px;
+  color: #FEFEFE;
+  display: block;
+}
+
+.sidebar-header-divider {
+  border-bottom: 1px solid #EBEBFE;
+  margin: 0 16px;
+}
+
+.mdap-logo {
+  vertical-align: middle;
+  text-align: center;
+}
+  
+img {
+  border-style: none;
+}
+  
+li {  
+  img {
+    padding-right: 15px;
+    height: 32px;
+    width: 32px;
+  }
+}
+  
+.wrapper {
+  background-image: linear-gradient(#0C0C58, #0C0C58);
+  padding-left: 0px;
+  padding-right: 5px;
+  height: 100vh;
+  position: relative;
+  overflow-y: auto;
+  display: block;
+}
