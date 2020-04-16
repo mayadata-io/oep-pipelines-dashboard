@@ -37,54 +37,54 @@ export class AppComponent {
     this.loginUrl = `${this.utils.websites().accountUrl}/login`;
     this.signupUrl = `${this.utils.websites().accountUrl}/signup`;
     this.safeLogOutUrl = this.sanitizer.bypassSecurityTrustUrl(this.logOutUrl);
-    this.authService.getAuthProviders().subscribe();    
-    if ((this.cookieService.check('token')) && (this.cookieService.check('authProvider'))) {
+    // this.authService.getAuthProviders().subscribe();    
+    // if ((this.cookieService.check('token')) && (this.cookieService.check('authProvider'))) {
 
-      this.authService.getAuthProviders().subscribe(res => {
-        const isTokenValid = this.authService.testAuthToken(res);
-        if (isTokenValid) {
-          this.authService.getUserDetails().subscribe(res => {
-            this.userData = res;
-            console.log(this.userData,'userData');
-            this.isUserAvatarLoading = false;
-            this.isLoggedInSuccessfully = true;
-            this.userDetails = this.userData.data.filter(data => data.externalIdType === 'github_user')[0] || this.userData.data.filter(data => data.externalIdType === 'google_user')[0] || this.userData.data.filter(data => data.externalIdType === 'rancher_id')[0];
-            console.log('userDetails',this.userDetails);
-          });
-        } else {
-          this.isUserAvatarLoading = false;
-          console.log('Token is expired!!!')
-          // window.location.href = this.loginUrl;
-        }
-      })
-    } else {
-      this.isUserAvatarLoading = false;
-      // window.location.href = this.loginUrl;
-    }
+    //   this.authService.getAuthProviders().subscribe(res => {
+    //     const isTokenValid = this.authService.testAuthToken(res);
+    //     if (isTokenValid) {
+    //       this.authService.getUserDetails().subscribe(res => {
+    //         this.userData = res;
+    //         console.log(this.userData,'userData');
+    //         this.isUserAvatarLoading = false;
+    //         this.isLoggedInSuccessfully = true;
+    //         this.userDetails = this.userData.data.filter(data => data.externalIdType === 'github_user')[0] || this.userData.data.filter(data => data.externalIdType === 'google_user')[0] || this.userData.data.filter(data => data.externalIdType === 'rancher_id')[0];
+    //         console.log('userDetails',this.userDetails);
+    //       });
+    //     } else {
+    //       this.isUserAvatarLoading = false;
+    //       console.log('Token is expired!!!')
+    //       // window.location.href = this.loginUrl;
+    //     }
+    //   })
+    // } else {
+    //   this.isUserAvatarLoading = false;
+    //   // window.location.href = this.loginUrl;
+    // }
 
-    setInterval(() => {
-      this.routePath = document.location.pathname
-      if ((this.cookieService.check('token')) && (this.cookieService.check('authProvider'))) {
-        this.authService.getAuthProviders().subscribe(res => {
-          const isTokenValid = this.authService.testAuthToken(res);
-          if (isTokenValid) {
-            if (!this.isLoggedInSuccessfully) {
-              this.isUserAvatarLoading = false;
-              location.reload();
-            }
-          } else {
-            if (this.isLoggedInSuccessfully) {
-              this.isUserAvatarLoading = false;
-              location.reload();
-            }
-          }
-        })
-      } else {
-        if (this.isLoggedInSuccessfully) {
-          this.isUserAvatarLoading = false;
-          location.reload();
-        }
-      }
-    }, 5000)
+    // setInterval(() => {
+    //   this.routePath = document.location.pathname
+    //   if ((this.cookieService.check('token')) && (this.cookieService.check('authProvider'))) {
+    //     this.authService.getAuthProviders().subscribe(res => {
+    //       const isTokenValid = this.authService.testAuthToken(res);
+    //       if (isTokenValid) {
+    //         if (!this.isLoggedInSuccessfully) {
+    //           this.isUserAvatarLoading = false;
+    //           location.reload();
+    //         }
+    //       } else {
+    //         if (this.isLoggedInSuccessfully) {
+    //           this.isUserAvatarLoading = false;
+    //           location.reload();
+    //         }
+    //       }
+    //     })
+    //   } else {
+    //     if (this.isLoggedInSuccessfully) {
+    //       this.isUserAvatarLoading = false;
+    //       location.reload();
+    //     }
+    //   }
+    // }, 5000)
   }
 }
