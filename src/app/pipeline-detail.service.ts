@@ -26,7 +26,7 @@ export class PipelineDetailService {
       this.buildDetail = "http://localhost:3000/api/build";
       this.pipelineData = "http://localhost:3000/api/pipelines/gcp";
       this.konvoyPipelineData = "http://localhost:3000/api/pipelines/konvoy";
-      this.rancherPipelineData = "http://localhost:3000/api/pipelines/rancher";
+      this.rancherPipelineData = "http://localhost:3000/api/rancher";
 
 
     } else if(this.host == "0.0.0.0:4200") {
@@ -41,7 +41,7 @@ export class PipelineDetailService {
       this.buildDetail = "/api/build";
       this.pipelineData = "/api/pipelines/gcp";
       this.konvoyPipelineData = "/api/pipelines/konvoy";
-      this.rancherPipelineData = "/api/pipelines/rancher";
+      this.rancherPipelineData = "/api/rancher";
 
     }
   }

@@ -1,4 +1,94 @@
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-2">
+	<div class="row">
+		<div class="col-md-3 shadow bg-light">
+			<div class="mt-5">
+				<div class="rounded bg-primary text-white py-2 px-1 text-center">Rancher</div>
+			</div>
+			<div class="mt-5">
+				<div class="rounded bg-secondary text-white py-2 px-1 text-center" disabled>Konvoy</div>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="e2e-table">
+				<table class="table table-hover" id="table-e2e" style="table-layout: fixed;">
+					<thead>
+						<th>Pipeline ID</th>
+						<th>Started_at</th>
+						<th>ReleaseTag</th>
+						<th>E2E test</th>
+						<th>Coverage</th>
+					</thead>
+					<tbody>
+						<tr *ngFor="let pipeline of rancherPipelineData">
+							<td>
+								<a routerLink="pipeline/e2e-test/{{pipeline.pipelineid}}/platform/rancher"
+									routerLinkActive="active" target="_blank">{{pipeline.pipelineid}}
+								</a>
+							</td>
+							<td>{{getTriggerTime(pipeline.jobs[0].started_at)}} ago</td>
+							<td>NA</td>
+							<td>
+								<a routerLink="pipeline/e2e-test/{{pipeline.pipelineid}}/platform/rancher"
+									routerLinkActive="active" target="_blank">
+									<div *ngIf="pipeline.status !== '';else pipelineNotTrigger" class="px-2">
+										<div ngbTooltip="{{ pipelineTooltip(pipeline)}}" placement="right">
+											<i *ngIf="pipelineTooltip(pipeline) == 'running';else doughutNotFound"
+												class="fas fa-circle-notch text-primary font-size-23 fa-spin"></i>
+											<ng-template #doughutNotFound>
+												<i *ngIf="pipelineTooltip(pipeline) == '';else doughutSuccessFail"
+													class="fa fa-ban text-secondary font-size-23"></i>
+												<ng-template #doughutSuccessFail>
+													<svg width="25" height="25" viewBox="0 0 42 42" class="donut">
+														<circle class="donut-hole" cx="21" cy="21" r="15.91549430918954"
+															fill="#fff">
+														</circle>
+														<circle class="donut-ring" cx="21" cy="21" r="15.91549430918954"
+															fill="transparent" stroke="#FB6977" stroke-width="6"
+															stroke-dasharray="95 5" stroke-dashoffset="22.5">
+														</circle>
+														<circle class="donut-segment" cx="21" cy="21"
+															r="15.91549430918954" fill="transparent" stroke="#4B515D"
+															stroke-width="6"
+															[attr.stroke-dasharray]="getJobPercentForSkippedPipeline(pipeline)"
+															stroke-dashoffset="22.5">
+														</circle>
+														<circle class="donut-segment" cx="21" cy="21"
+															r="15.91549430918954" fill="transparent" stroke="#009400"
+															stroke-width="6"
+															[attr.stroke-dasharray]="getJobPercentForPipeline(pipeline)"
+															stroke-dashoffset="22.5">
+														</circle>
+													</svg>
+												</ng-template>
+											</ng-template>
+										</div>
+									</div>
+								</a>
+							</td>
+							<td>NA</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container-fluid mt-5">
 	<div>
 		<div class="container row mx-auto">
 			<div class="col-12 mx-2 row-table-heading" style="border-radius: 20px;background-color: FFFADC;">
@@ -18,24 +108,12 @@
 				</div>
 			</div>
 		</div>
-		<!-- Table Heading Bar Contains version and filter -->
 		<div class="row row-table-heading mt-5 mb-2">
 			<div class="col-9">
 				<h5 class="font-weight-bold">E2E Pipelines</h5>
 			</div>
 			<div class="col-3 d-flex justify-content-end">
-				<!-- <form #version123 = ngForm>   -->
-				<!-- <div class="form-group my-auto d-none">
-					<label class="mb-0 mr-2">version</label>
-					<select #version123="ngModel" [(ngModel)]='activeVersion'
-						(ngModelChange)="versionFunc(version123.model)" required>
-						<option *ngFor="let ver of version" [value]="ver">{{ver}}</option>
-					</select>
-				</div> -->
-				<!-- </form> -->
-				<!-- {{version123.value.fn | json}} -->
 				<div>
-					<!-- TODO: Need to replace with a better solution instead of using stopTimer() -->
 					<button class="btn" type="button" data-toggle="collapse" data-target="#filterCollapse"
 						aria-expanded="false" aria-controls="filterCollapse" (click)="stopTimer()">
 						<i class="fa fa-filter" aria-hidden="true"></i>
@@ -44,7 +122,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- Filter Collapse Section  -->
 		<div class="row collapse my-2" id="filterCollapse">
 			<div class="col-md-12 border rounded">
 				<div class="d-flex flex-wrap my-2">
@@ -54,8 +131,8 @@
 				</div>
 			</div>
 		</div>
-		<!-- Dashboard Table Start  -->
-		<!-- <app-lodding-spinners></app-lodding-spinners> -->
+
+
 
 		<div class="e2e-table">
 			<table class="table table-hover" id="table-e2e" style="table-layout: fixed;">
@@ -97,9 +174,6 @@
 								class="d-block text-secondary font-size-14 font-italic"><i class="fa fa-clock-o"
 									aria-hidden="true"></i>{{getTriggerTime(dashboardCommitData[i].committeddate)}}
 								ago</span></td>
-						<!-- <td>
-							<p class="overflow-ellipsis">{{commit.sha}} </p>
-						</td> -->
 						<td> <i class="fa fa-code-fork mr-2 text-primary" aria-hidden="true"></i>{{commit.ref}} / <p
 								class="overflow-ellipsis mb-0">{{commit.sha}} </p>
 						</td>
@@ -183,7 +257,7 @@
 							</ng-template>
 						</td>
 
-						<!-- Konvoy        Test         Data -----------------[] -->
+
 
 						<td class="text-center border-left border-right">
 							<a class="d-block bg-primary rounded"
@@ -254,10 +328,10 @@
 								<span class="text-dark">NA</span>
 							</ng-template>
 						</td>
-
-
-						<!-- Rancher        Test         Data -----------------[] -->
-
+						
+						
+						
+						
 						<td class="text-center">
 							<a class="d-block bg-primary rounded"
 								routerLink="pipeline/{{getProject(commit.projectid)}}/{{rancherPipelineData[i].pipelineid}}/platform/rancher"
@@ -332,4 +406,4 @@
 			</table>
 		</div>
 	</div>
-</div>
+</div> -->
