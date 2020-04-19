@@ -17,7 +17,7 @@
           </ng-template>
         </div> -->
         <h6>Stages of <a href="{{data.web_url}}">#{{pipeline_id}}</a> pipeline</h6>
-        <div class="d-flex justify-content-around my-2" style="width: 150%;">
+        <div class="d-flex justify-content-around my-2" style="width: 100%;">
           <ng-template ngFor let-stage [ngForOf]="jobsDetail">
             <div class="d-flex justify-content-around border-radius-pill" [ngClass]=genStageStatus(stage.status)>
               <div class="m-auto"> <i [ngClass]=stageStatus(stage.status) aria-hidden="true"></i>

@@ -61,22 +61,25 @@ export class PipelineDashboardComponent implements OnInit {
   }
   getApiData() {
 
-    this.id = timer(0, 10000).subscribe(x => {
-      this.pipelineDetailService.getPipelinesData('commit').then(res => {
-        this.dashboardCommitData = res.dashboard
-      })
-      this.pipelineDetailService.getPipelinesData('build').then(res => {
-        this.buildData = res.dashboard
-      })
-      this.pipelineDetailService.getPipelinesData('gcp').then(res => {
-        this.pipelineData = res.dashboard
-      })
-      this.pipelineDetailService.getPipelinesData('konvoy').then(res => {
-        this.konvoyPipelineData = res.dashboard
-      })
+    this.id = timer(0, 1000000).subscribe(x => {
+      // this.pipelineDetailService.getPipelinesData('commit').then(res => {
+      //   this.dashboardCommitData = res.dashboard
+      // })
+      // this.pipelineDetailService.getPipelinesData('build').then(res => {
+      //   this.buildData = res.dashboard
+      // })
+      // this.pipelineDetailService.getPipelinesData('gcp').then(res => {
+      //   this.pipelineData = res.dashboard
+      // })
+      // this.pipelineDetailService.getPipelinesData('konvoy').then(res => {
+      //   this.konvoyPipelineData = res.dashboard
+      // })
       this.pipelineDetailService.getPipelinesData('rancher').then(res => {
         this.rancherPipelineData = res.dashboard
+        console.log(this.rancherPipelineData);
+
       })
+      
     })
   }
 
@@ -103,7 +106,7 @@ export class PipelineDashboardComponent implements OnInit {
   pipelineTooltip(index) {
     try {
       let data = index
-      let jobs = data.jobs.filter(job => job.name.includes('tcid')) //coverageJobs only consider in home dashboard
+      let jobs = data.jobs
       if (data.status == "running") {
         return "running"
       } else if (data.status == "none") {
@@ -150,7 +153,7 @@ export class PipelineDashboardComponent implements OnInit {
   getJobPercentForSkippedPipeline(i) {
     try {
       var pipeline = i;
-      let jobs = pipeline.jobs.filter(job => job.name.includes("tcid")); //coverageJobs only consider in home dashboard
+      let jobs = pipeline.jobs; //coverageJobs only consider in home dashboard
       if (pipeline.status == "failed" || pipeline.status == "canceled" || pipeline.status == "skipped") {
         var count = 0;
         jobs.forEach(job => {
@@ -173,7 +176,7 @@ export class PipelineDashboardComponent implements OnInit {
   getJobPercentForPipeline(index) {
     try {
       var pipeline = index;
-      let jobs = pipeline.jobs.filter(job => job.name.includes("tcid"));
+      let jobs = pipeline.jobs;
       if (pipeline.status == "success") {
         return "100 0";
       }
@@ -251,7 +254,7 @@ export class PipelineDashboardComponent implements OnInit {
     if (days != 0) {
       return days + "d :" + hours + "h ";
     } else if (hours != 0) {
-      return hours + "h :" + minutes + "m :" + seconds + "sec";
+      return hours + "h :" + minutes + "m :" ;
     }
     return minutes + "m :" + seconds + "sec";
 
