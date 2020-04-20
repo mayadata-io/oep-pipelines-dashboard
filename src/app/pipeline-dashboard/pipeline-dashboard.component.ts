@@ -204,6 +204,8 @@ export class PipelineDashboardComponent implements OnInit {
 
   getCoveragePercentage(percentage) {
     if (percentage != "NA") {
+      console.log("percentage",percentage);
+      
       let percentageString = percentage.replace(/[^\w\s]/gi, '')
       let value = parseInt(percentageString)
       return value + "%";
@@ -254,7 +256,7 @@ export class PipelineDashboardComponent implements OnInit {
     if (days != 0) {
       return days + "d :" + hours + "h ";
     } else if (hours != 0) {
-      return hours + "h :" + minutes + "m :" ;
+      return hours + "h :" + minutes + "m" ;
     }
     return minutes + "m :" + seconds + "sec";
 
