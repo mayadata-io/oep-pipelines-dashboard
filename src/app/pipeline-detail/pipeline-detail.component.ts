@@ -137,7 +137,7 @@ export class PipelineDetailComponent implements OnInit {
   }
   genJobLogLink(id) {
     let host = 'https://gitlab.mayadata.io/'
-    let genURL = host + 'oep/oep-e2e-gcp/-/jobs/' + id
+    let genURL = host + 'oep/oep-e2e-'+this.platform+'/-/jobs/' + id
     return genURL
 
   }

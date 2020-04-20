@@ -35,9 +35,9 @@
       <div class="d-none" id="commit_div">
         <div class="row">
           <div class="col-md-12 text-center mt-5">
-            <img src="assets/images/cloud/gcp.svg" alt="gcp-logo">
+            <img src="assets/images/cloud/{{platform}}.svg" alt="gcp-logo">
             <div class="text-secondary">
-              <h5>Platform : GCP</h5>
+              <h5>Platform : {{platform}}</h5>
               <h6>Kubernetes version 1.11.1</h6>
             </div>
           </div>
@@ -127,7 +127,7 @@
       <div class="col-md-3 shadow rounded project-overview-content pt-2 my-2">
         <h6>E2E Test : </h6>
         <div class="row my-3 text-center">
-          <h2 class="text-center w-100 text-primary font-weight-bold">oep-e2e-gcp</h2>
+          <h2 class="text-center w-100 text-primary font-weight-bold">oep-e2e-{{platform}}</h2>
         </div>
         <div>
           <h6>pipeline ID: <span class="text-primary">#{{pipeline_id}}</span></h6>
