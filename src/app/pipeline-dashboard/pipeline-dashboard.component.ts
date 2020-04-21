@@ -61,7 +61,7 @@ export class PipelineDashboardComponent implements OnInit {
   }
   getApiData() {
 
-    this.id = timer(0, 1000000).subscribe(x => {
+    this.id = timer(0, 10000).subscribe(x => {
       // this.pipelineDetailService.getPipelinesData('commit').then(res => {
       //   this.dashboardCommitData = res.dashboard
       // })
@@ -106,7 +106,7 @@ export class PipelineDashboardComponent implements OnInit {
   pipelineTooltip(index) {
     try {
       let data = index
-      let jobs = data.jobs
+      let jobs = data.jobs.filter(job => job.name.includes("tcid"));
       if (data.status == "running") {
         return "running"
       } else if (data.status == "none") {
@@ -153,8 +153,10 @@ export class PipelineDashboardComponent implements OnInit {
   getJobPercentForSkippedPipeline(i) {
     try {
       var pipeline = i;
-      let jobs = pipeline.jobs; //coverageJobs only consider in home dashboard
-      if (pipeline.status == "failed" || pipeline.status == "canceled" || pipeline.status == "skipped") {
+      let jobs = pipeline.jobs.filter(job => job.name.includes("tcid")); //coverageJobs only consider in home dashboard
+      if (jobs.length == 0) {
+        return "100 0";
+      }else if (pipeline.status == "failed" || pipeline.status == "canceled" || pipeline.status == "skipped") {
         var count = 0;
         jobs.forEach(job => {
           if (job.status == "skipped" || job.status == "canceled") {
@@ -176,14 +178,13 @@ export class PipelineDashboardComponent implements OnInit {
   getJobPercentForPipeline(index) {
     try {
       var pipeline = index;
-      let jobs = pipeline.jobs;
-      if (pipeline.status == "success") {
-        return "100 0";
-      }
-      else if (pipeline.status == "pending") {
+      let jobs = pipeline.jobs.filter(job => job.name.includes("tcid"));
+      if (jobs.length == 0) {
+        return "0 100";
+      }else if (pipeline.status == "pending") {
         return "0 0";
       }
-      else if (pipeline.status == "failed" || pipeline.status == "canceled") {
+      else if (pipeline.status == "failed" || pipeline.status == "canceled" || pipeline.status == "success") {
         var count = 0;
         jobs.forEach(job => {
           if (job.status == "success") {

@@ -30,8 +30,8 @@
 							<td>
 								<a routerLink="pipeline/e2e-test/{{pipeline.pipelineid}}/platform/rancher"
 									routerLinkActive="active" target="_blank">
-									<div *ngIf="pipeline.status !== '';else pipelineNotTrigger" class="px-2">
-										<div ngbTooltip="{{ pipelineTooltip(pipeline)}}" placement="right">
+									<div *ngIf="pipeline.status !== '';else pipelineNotTrigger">
+										<div  class="d-inline-block" ngbTooltip="{{ pipelineTooltip(pipeline)}}" placement="right">
 											<i *ngIf="pipelineTooltip(pipeline) == 'running';else doughutNotFound"
 												class="fas fa-circle-notch text-primary font-size-23 fa-spin"></i>
 											<ng-template #doughutNotFound>
