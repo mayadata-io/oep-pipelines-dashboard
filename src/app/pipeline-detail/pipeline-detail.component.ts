@@ -28,7 +28,7 @@ export class PipelineDetailComponent implements OnInit {
     this.platform = router_details[router_details.length - 1]
     this.pipeline_id = router_details[router_details.length - 3]
     this.app_name = router_details[router_details.length - 4]
-    this.titleService.setTitle(this.pipeline_id + " | " + this.app_name);
+    this.titleService.setTitle(this.pipeline_id + " | " + this.platform);
   }
 
   public doughnutChartLabels = ['failed', 'Success', 'cancel', 'skipped'];
