@@ -100,7 +100,7 @@ export class PipelineDashboardComponent implements OnInit {
     let pipeline = data;
     let coverageJobs = pipeline.jobs.filter(job => job.name.includes("tcid"));
     let nonAutomatedJobs = pipeline.jobs.length - coverageJobs.length
-    return " Automated: " + coverageJobs.length + " \n Non-Automated: " + nonAutomatedJobs
+    return " Automated : " + coverageJobs.length + " \n Total :" + pipeline.total_coverage_count
   }
 
   pipelineTooltip(index) {
