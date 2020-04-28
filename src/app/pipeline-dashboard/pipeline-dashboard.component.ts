@@ -62,24 +62,9 @@ export class PipelineDashboardComponent implements OnInit {
   getApiData() {
 
     this.id = timer(0, 10000).subscribe(x => {
-      // this.pipelineDetailService.getPipelinesData('commit').then(res => {
-      //   this.dashboardCommitData = res.dashboard
-      // })
-      // this.pipelineDetailService.getPipelinesData('build').then(res => {
-      //   this.buildData = res.dashboard
-      // })
-      // this.pipelineDetailService.getPipelinesData('gcp').then(res => {
-      //   this.pipelineData = res.dashboard
-      // })
-      // this.pipelineDetailService.getPipelinesData('konvoy').then(res => {
-      //   this.konvoyPipelineData = res.dashboard
-      // })
       this.pipelineDetailService.getPipelinesData('rancher').then(res => {
         this.rancherPipelineData = res.dashboard
-        console.log(this.rancherPipelineData);
-
       })
-      
     })
   }
 
@@ -205,8 +190,6 @@ export class PipelineDashboardComponent implements OnInit {
 
   getCoveragePercentage(percentage) {
     if (percentage != "NA") {
-      console.log("percentage",percentage);
-      
       let percentageString = percentage.replace(/[^\w\s]/gi, '')
       let value = parseInt(percentageString)
       return value + "%";
