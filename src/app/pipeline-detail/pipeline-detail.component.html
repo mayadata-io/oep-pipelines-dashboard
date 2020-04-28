@@ -96,21 +96,20 @@
                 <div class="row col-md-12 bg-light"> stage : {{stage.stageName}}</div>
                 <table class="table table-hover" style="table-layout: fixed;">
                   <thead>
-                    <th scope="col">ID</th>
-                    <th scope="col">job_name</th>
+                    <th scope="col">GitLab JobID</th>
+                    <th scope="col">Test Case</th>
                     <th scope="col">Status</th>
-                    <th scope="col">link</th>
+                    <!-- <th scope="col">link</th> -->
                   </thead>
                   <tbody>
                     <tr *ngFor="let job of stage.allJobs" class="justify-content-between">
-                      <td>#{{job.id}}</td>
+                      <td><a href={{genJobLogLink(job.id)}} target="_blank">{{job.id}}</a></td>
                       <td>
                         <div *ngIf="job.name.includes('tcid'); else nonAutomatedTest"><a
                             href={{genReadmeURL(stage.stageName,job.name)}} target="_blank">{{job.name}}</a></div>
                         <ng-template #nonAutomatedTest>{{job.name}}</ng-template>
                       </td>
                       <td><span [ngClass]=statusButton(job.status)>{{job.status}}</span></td>
-                      <td class="text-primary"><a href={{genJobLogLink(job.id)}} target="_blank">Gitlab Job</a></td>
                     </tr>
                   </tbody>
                 </table>
