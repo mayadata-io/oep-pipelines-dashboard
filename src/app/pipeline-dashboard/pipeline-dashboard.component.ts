@@ -23,6 +23,9 @@ export class PipelineDashboardComponent implements OnInit {
   rancherPipelineData: any;
   buildData: any;
   subscribe = false;
+  awsData: any;
+  activePlatform: any;
+  ifInit = false ;
 
 
   constructor(private meta: Meta, private titleService: Title, private pipelineDetailService: PipelineDetailService) {
@@ -60,22 +63,50 @@ export class PipelineDashboardComponent implements OnInit {
     });
   }
   getApiData() {
-
     this.id = timer(0, 10000).subscribe(x => {
       this.pipelineDetailService.getPipelinesData('rancher').then(res => {
         this.rancherPipelineData = res.dashboard
+        if (!this.ifInit){
+          this.platformChange('rancher');
+          this.ifInit = true;
+        }
+      })
+      this.pipelineDetailService.getPipelinesData('konvoy').then(res => {
+        this.konvoyPipelineData = res.dashboard
+      })
+      this.pipelineDetailService.getPipelinesData('aws').then(res => {
+        this.awsData = res.dashboard
       })
     })
   }
 
-  stopTimer() {
-    if (this.subscribe) {
-      this.getApiData();
-      this.subscribe = false;
-      $('input[type="checkbox"]:checkbox').prop('checked', false);
-    } else {
-      this.id.unsubscribe();
-      this.subscribe = true;
+  platformChange(platform) {
+    switch (platform) {
+      case "aws":
+        this.pipelineData = this.awsData
+        this.activePlatform = platform;
+        console.log("PPPPPPPP -- -aws --- > ", platform);
+        break;
+
+      case "konvoy":
+        this.pipelineData = this.konvoyPipelineData
+        this.activePlatform = platform;
+        console.log("PPPPPPPP -- - --- konvoy > ", platform);
+        break;
+
+      case "rancher":
+        this.pipelineData = this.rancherPipelineData
+        this.activePlatform = platform;
+        console.log("PPPPPPPP -- -rancher --- > ", platform);
+        break;
+
+    }
+  }
+  platformBtn(activePlatform , btnPlatform){
+    if (activePlatform == btnPlatform){
+      return 'activePlatformBtn shadow'
+    }else{
+      return 'deactivePlatformBtn'
     }
   }
   versionFunc(ver) {
@@ -141,7 +172,7 @@ export class PipelineDashboardComponent implements OnInit {
       let jobs = pipeline.jobs.filter(job => job.name.includes("tcid")); //coverageJobs only consider in home dashboard
       if (jobs.length == 0) {
         return "100 0";
-      }else if (pipeline.status == "failed" || pipeline.status == "canceled" || pipeline.status == "skipped") {
+      } else if (pipeline.status == "failed" || pipeline.status == "canceled" || pipeline.status == "skipped") {
         var count = 0;
         jobs.forEach(job => {
           if (job.status == "skipped" || job.status == "canceled") {
@@ -166,7 +197,7 @@ export class PipelineDashboardComponent implements OnInit {
       let jobs = pipeline.jobs.filter(job => job.name.includes("tcid"));
       if (jobs.length == 0) {
         return "0 100";
-      }else if (pipeline.status == "pending") {
+      } else if (pipeline.status == "pending") {
         return "0 0";
       }
       else if (pipeline.status == "failed" || pipeline.status == "canceled" || pipeline.status == "success") {
@@ -240,7 +271,7 @@ export class PipelineDashboardComponent implements OnInit {
     if (days != 0) {
       return days + "d :" + hours + "h ";
     } else if (hours != 0) {
-      return hours + "h :" + minutes + "m" ;
+      return hours + "h :" + minutes + "m";
     }
     return minutes + "m :" + seconds + "sec";
 

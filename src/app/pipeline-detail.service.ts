@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class PipelineDetailService {
   public backendData: any;
   commitData: any;
-  pipelineData: any;
+  awsData: any;
   konvoyPipelineData: any;
   rancherPipelineData: any;
   buildDetail: any;
@@ -22,42 +22,27 @@ export class PipelineDetailService {
   constructor(private http: HttpClient, private router: Router) {
     this.host = window.location.host;
     if ((this.host.toString().indexOf("localhost") + 1) && this.host.toString().indexOf(":")) {
-      this.commitData = "http://localhost:3000/api/commit";
-      this.buildDetail = "http://localhost:3000/api/build";
-      this.pipelineData = "http://localhost:3000/api/pipelines/gcp";
-      this.konvoyPipelineData = "http://localhost:3000/api/pipelines/konvoy";
+      this.awsData = "http://localhost:3000/api/aws";
+      this.konvoyPipelineData = "http://localhost:3000/api/konvoy";
       this.rancherPipelineData = "http://localhost:3000/api/rancher";
 
 
-    } else if(this.host == "0.0.0.0:4200") {
-      this.commitData = "https://ci.mayadata.io/api/commit";
-      this.buildDetail = "http://ci.mayadata.io/api/build";
-      this.pipelineData = "https://ci.mayadata.io/api/pipelines/gcp";
-      this.konvoyPipelineData = "https://ci.mayadata.io/api/pipelines/konvoy";
-      this.rancherPipelineData = "https://ci.mayadata.io/api/pipelines/rancher";
+    } else if (this.host == "0.0.0.0:4200") {
+      this.awsData = "https://oep-pipelines.mayadata.io/api/aws";
+      this.konvoyPipelineData = "https://oep-pipelines.mayadata.io/api/konvoy";
+      this.rancherPipelineData = "https://oep-pipelines.mayadata.io/api/rancher";
 
-    }else {
-      this.commitData = "/api/commit";
-      this.buildDetail = "/api/build";
-      this.pipelineData = "/api/pipelines/gcp";
-      this.konvoyPipelineData = "/api/pipelines/konvoy";
+    } else {
+      this.awsData = "/api/aws";
+      this.konvoyPipelineData = "/api/konvoy";
       this.rancherPipelineData = "/api/rancher";
-
     }
   }
 
 
   async getPipelinesData(backend) {
-    if (backend == "commit") {
-      this.backendData = await this.http.get<any>(this.commitData).toPromise();
-      return this.backendData;
-    }
-    else if (backend == "gcp") {
-      this.backendData = await this.http.get<any>(this.pipelineData).toPromise();
-      return this.backendData;
-    }
-    else if (backend == "build") {
-      this.backendData = await this.http.get<any>(this.buildDetail).toPromise();
+    if (backend == "aws") {
+      this.backendData = await this.http.get<any>(this.awsData).toPromise();
       return this.backendData;
     }
     else if (backend == "konvoy") {
