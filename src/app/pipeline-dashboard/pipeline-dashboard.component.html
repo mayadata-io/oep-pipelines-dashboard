@@ -28,13 +28,17 @@
 									routerLinkActive="active" target="_blank">{{pipeline.pipelineid}}
 								</a>
 							</td>
-							<td *ngIf="pipeline.jobs != null ">{{getTriggerTime(pipeline.jobs[0].started_at)}} ago</td>
+							<td><span *ngIf="pipeline.jobs != null;else jobNotPresent">{{getTriggerTime(pipeline.jobs[0].started_at)}} ago</span>
+							<ng-template #jobNotPresent>
+								<span>NA</span>
+							</ng-template>
+							</td>
 							<td>{{pipeline.release_tag}}</td>
 							<td>
 								<a routerLink="pipeline/e2e-test/{{pipeline.pipelineid}}/platform/{{activePlatform}}"
 									routerLinkActive="active" target="_blank">
 									<div *ngIf="pipeline.status !== '';else pipelineNotTrigger">
-										<div  class="d-inline-block" ngbTooltip="{{ pipelineTooltip(pipeline)}}" placement="right">
+										<div *ngIf="pipeline.jobs !== null;else pipelineNotTrigger" class="d-inline-block" ngbTooltip="{{ pipelineTooltip(pipeline)}}" placement="right">
 											<i *ngIf="pipelineTooltip(pipeline) == 'running';else doughutNotFound"
 												class="fas fa-circle-notch text-primary font-size-23 fa-spin"></i>
 											<ng-template #doughutNotFound>
@@ -67,6 +71,10 @@
 										</div>
 									</div>
 								</a>
+							<ng-template #pipelineNotTrigger>
+								<i class="fa fa-ban text-secondary font-size-23" ngbTooltip="E2E Pipeline Not Triggered"
+									placement="right"></i>
+							</ng-template>
 							</td>
 							<td class="coverage-content">
 								<div *ngIf="pipelineTooltip(pipeline) != '' && pipeline.coverage != 'NA';else coverageNA"
