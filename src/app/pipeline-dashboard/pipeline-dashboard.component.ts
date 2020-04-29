@@ -85,19 +85,16 @@ export class PipelineDashboardComponent implements OnInit {
       case "aws":
         this.pipelineData = this.awsData
         this.activePlatform = platform;
-        console.log("PPPPPPPP -- -aws --- > ", platform);
         break;
 
       case "konvoy":
         this.pipelineData = this.konvoyPipelineData
         this.activePlatform = platform;
-        console.log("PPPPPPPP -- - --- konvoy > ", platform);
         break;
 
       case "rancher":
         this.pipelineData = this.rancherPipelineData
         this.activePlatform = platform;
-        console.log("PPPPPPPP -- -rancher --- > ", platform);
         break;
 
     }
