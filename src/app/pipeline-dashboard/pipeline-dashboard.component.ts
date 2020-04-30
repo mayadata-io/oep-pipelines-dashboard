@@ -111,15 +111,13 @@ export class PipelineDashboardComponent implements OnInit {
   }
   coverageTooltip(data) {
     let pipeline = data;
-    let coverageJobs = pipeline.jobs.filter(job => job.name.includes("tcid"));
-    let nonAutomatedJobs = pipeline.jobs.length - coverageJobs.length
-    return " Automated : " + coverageJobs.length + " \n Total :" + pipeline.total_coverage_count
+    return " Automated : " + pipeline.valid_test_count + " \n Total :" + pipeline.total_coverage_count
   }
 
   pipelineTooltip(index) {
     try {
       let data = index
-      let jobs = data.jobs.filter(job => job.name.includes("tcid"));
+      let jobs = data.jobs.filter(job => job.name.includes("tcid") || job.name.includes("TCID"));
       if (data.status == "running") {
         return "running"
       } else if (data.status == "none") {
@@ -166,7 +164,7 @@ export class PipelineDashboardComponent implements OnInit {
   getJobPercentForSkippedPipeline(i) {
     try {
       var pipeline = i;
-      let jobs = pipeline.jobs.filter(job => job.name.includes("tcid")); //coverageJobs only consider in home dashboard
+      let jobs = pipeline.jobs.filter(job => job.name.includes("tcid") || job.name.includes("TCID")); //coverageJobs only consider in home dashboard
       if (jobs.length == 0) {
         return "100 0";
       } else if (pipeline.status == "failed" || pipeline.status == "canceled" || pipeline.status == "skipped") {
@@ -191,7 +189,7 @@ export class PipelineDashboardComponent implements OnInit {
   getJobPercentForPipeline(index) {
     try {
       var pipeline = index;
-      let jobs = pipeline.jobs.filter(job => job.name.includes("tcid"));
+      let jobs = pipeline.jobs.filter(job => job.name.includes("tcid") || job.name.includes("TCID"));
       if (jobs.length == 0) {
         return "0 100";
       } else if (pipeline.status == "pending") {
