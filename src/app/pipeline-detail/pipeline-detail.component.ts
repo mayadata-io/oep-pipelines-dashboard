@@ -50,18 +50,16 @@ export class PipelineDetailComponent implements OnInit {
       this.jobsDetail = this.getJobDetails(this.data)
       this.failedJobs = this.data.jobs.filter(data => data.status == 'failed').length
       this.doughnutChartData.push(this.failedJobs);
-      this.doughnutAutomatedChartData.push(this.data.jobs.filter(d => d.status == 'failed').filter(j => j.name.includes('tcid')).length);
+      this.doughnutAutomatedChartData.push(this.data.jobs.filter(d => d.status == 'failed').filter(j => j.name.includes("tcid") || j.name.includes("TCID")).length);
       this.successJobs = this.data.jobs.filter(data => data.status == 'success').length
       this.doughnutChartData.push(this.successJobs);
-      this.doughnutAutomatedChartData.push(this.data.jobs.filter(d => d.status == 'success').filter(j => j.name.includes('tcid')).length);
-
+      this.doughnutAutomatedChartData.push(this.data.jobs.filter(d => d.status == 'success').filter(j => j.name.includes("tcid") || j.name.includes("TCID")).length);
       this.canceledJobs = this.data.jobs.filter(data => data.status == 'canceled').length
       this.doughnutChartData.push(this.canceledJobs);
-      this.doughnutAutomatedChartData.push(this.data.jobs.filter(d => d.status == 'canceled').filter(j => j.name.includes('tcid')).length);
-
+      this.doughnutAutomatedChartData.push(this.data.jobs.filter(d => d.status == 'canceled').filter(j => j.name.includes("tcid") || j.name.includes("TCID")).length);
       this.skippedJobs = this.data.jobs.filter(data => data.status == 'skipped').length
       this.doughnutChartData.push(this.skippedJobs);
-      this.doughnutAutomatedChartData.push(this.data.jobs.filter(d => d.status == 'skipped').filter(j => j.name.includes('tcid')).length);
+      this.doughnutAutomatedChartData.push(this.data.jobs.filter(d => d.status == 'skipped').filter(j => j.name.includes("tcid") || j.name.includes("TCID")).length);
 
       this.barChart(this.data)
 
@@ -103,9 +101,9 @@ export class PipelineDetailComponent implements OnInit {
         return 'badge badge-pill badge-danger'
       case 'skipped':
         return 'badge badge-pill badge-secondary'
-      case 'Running':
+      case 'running':
         return 'badge badge-pill badge-primary'
-      case 'canceled':
+      case 'canceled' || 'pending':
         return 'badge badge-pill badge-warning'
       default:
         return 'n/a'
