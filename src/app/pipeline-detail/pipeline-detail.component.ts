@@ -365,4 +365,13 @@ export class PipelineDetailComponent implements OnInit {
   genJobName(name) {
     return name;
   }
+  getCoveragePercentage(percentage) {
+    if (percentage != "NA") {
+      let percentageString = percentage.replace(/[^\w\s]/gi, '')
+      let value = parseInt(percentageString)
+      return value + "%";
+    } else {
+      return percentage;
+    }
+  }
 }
