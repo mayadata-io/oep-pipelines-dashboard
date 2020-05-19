@@ -78,7 +78,7 @@
 							</ng-template>
 							</td>
 							<td class="coverage-content">
-								<div *ngIf="pipelineTooltip(pipeline) != '' && pipeline.coverage != 'NA';else coverageNA"
+								<div *ngIf="pipelineTooltip(pipeline) != '' && pipeline.coverage != 'NA' && pipeline.coverage != '' ;else coverageNA"
 									class="text-dark" ngbTooltip="{{coverageTooltip(pipeline)}}" placement="top">
 									<svg width='50' height='10'>
 										<g>
