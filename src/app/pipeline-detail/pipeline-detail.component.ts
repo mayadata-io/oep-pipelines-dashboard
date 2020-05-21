@@ -69,12 +69,12 @@ export class PipelineDetailComponent implements OnInit {
 
   genReadmeURL(stage, job) {
     // example === https://github.com/mayadata-io/gui-automation/blob/master/testcases/gui-dashboard-alerts-check.md
-    if (stage == 'DIRECTOR-GUI-CHECK') {
+    if (stage == 'DIRECTOR-GUI-CHECK' ||stage == 'DIRECTOR-GUI') {
       let host = "https://github.com/mayadata-io/gui-automation/tree/master/testcases"
-      return host + '/' + job + '.md'
+      return host + '/' + job 
     } else {
       let host = "https://github.com/mayadata-io/oep-e2e/tree/master/litmus/director/"
-      return host + job + '/' + 'README.md'
+      return host + job 
     }
   }
   genStageName(stage) {
