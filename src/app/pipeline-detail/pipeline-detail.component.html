@@ -104,8 +104,8 @@
                     <tr *ngFor="let job of stage.allJobs" class="justify-content-between">
                       <td><a href={{genJobLogLink(job.id)}} target="_blank">{{job.id}}</a></td>
                       <td>
-                        <div *ngIf="job.name.includes('tcid') || job.name.includes('TCID'); else nonAutomatedTest"><a
-                            href={{genReadmeURL(stage.stageName,job.name)}} target="_blank">{{job.name}}</a></div>
+                        <div *ngIf="job.test_case_URL != '' && job.test_case_URL != 'NA'; else nonAutomatedTest"><a
+                            href={{job.test_case_URL}} target="_blank">{{job.name}}</a></div>
                         <ng-template #nonAutomatedTest>{{job.name}}</ng-template>
                       </td>
                       <td><span [ngClass]=statusButton(job.status)>{{job.status}}</span></td>

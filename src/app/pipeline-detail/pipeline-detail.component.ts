@@ -67,16 +67,6 @@ export class PipelineDetailComponent implements OnInit {
 
   }
 
-  genReadmeURL(stage, job) {
-    // example === https://github.com/mayadata-io/gui-automation/blob/master/testcases/gui-dashboard-alerts-check.md
-    if (stage == 'DIRECTOR-GUI-CHECK') {
-      let host = "https://github.com/mayadata-io/gui-automation/tree/master/testcases"
-      return host + '/' + job + '.md'
-    } else {
-      let host = "https://github.com/mayadata-io/oep-e2e/tree/master/litmus/director/"
-      return host + job + '/' + 'README.md'
-    }
-  }
   genStageName(stage) {
     switch (stage) {
       case 'CLUSTER-SETUP':
