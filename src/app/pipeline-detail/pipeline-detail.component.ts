@@ -227,7 +227,7 @@ export class PipelineDetailComponent implements OnInit {
       case 'success':
         return "fo-sz-16 fa fa-check text-success bg-white shadow-txt p-1 margin-status-icon border rounded-circle"
       case 'failed':
-        return "fo-sz-16 fa fa-times text-danger  bg-white shadow-txt p-1 margin-status-icon border rounded-circle"
+        return "fo-sz-16 fa fa-times text-danger py-1 p-l-r-6 bg-white shadow-txt margin-status-icon border rounded-circle"
       case 'canceled':
         return "fo-sz-16 fa fa-ban text-warning bg-white shadow-txt p-1 margin-status-icon border rounded-circle"
       case 'created':

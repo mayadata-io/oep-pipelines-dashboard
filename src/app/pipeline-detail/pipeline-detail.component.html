@@ -2,23 +2,9 @@
   <div>
     <!-- <h6>Stage Status of #5656 pipeline</h6> -->
     <div class="row">
-      <div class="col-md-12 p-0 my-2" style="width: 150%; overflow-x: scroll;">
-        <!-- <div class="stepper">
-          <ng-template ngFor let-stage [ngForOf]="jobsDetail">
-            <div class="stepper-step-container">
-              <div class="step-success">
-                <span class="step-icon-content">
-                  <i [ngClass]=stageStatus(stage.status) aria-hidden="true"></i>
-                </span>
-              </div>
-              <div class="step-label font-weight-light">{{stage.stageName}}</div>
-            </div>
-            <div class="stepper-link-line "></div>
-          </ng-template>
-        </div> -->
-        <h6>Stages of <a href="{{data.web_url}}">#{{pipeline_id}}</a> pipeline</h6>
-        <div class="d-flex justify-content-around my-2" style="width: 100%;">
-          <ng-template ngFor let-stage [ngForOf]="jobsDetail">
+      <div class="col-md-12 p-0 my-2">
+        <div class="d-flex justify-content-around py-2">
+          <ng-template ngFor let-stage [ngForOf]="jobsDetail" >
             <div class="d-flex justify-content-around border-radius-pill" [ngClass]=genStageStatus(stage.status)>
               <div class="m-auto"> <i [ngClass]=stageStatus(stage.status) aria-hidden="true"></i>
               </div>
@@ -92,7 +78,7 @@
             <h4></h4>
             <div class="row col-md-12 mt-3 d-block job-table">
               <div *ngFor="let stage of jobsDetail">
-                <div class="row col-md-12 bg-light"> stage : {{stage.stageName}}</div>
+                <div class="row col-md-12 bg-light stage-name-header"> stage : {{stage.stageName}}</div>
                 <table class="table table-hover" style="table-layout: fixed;">
                   <thead>
                     <th scope="col">GitLab JobID</th>
@@ -128,7 +114,7 @@
           <h2 class="text-center w-100 text-primary font-weight-bold">oep-e2e-{{platform}}</h2>
         </div>
         <div>
-          <h6>pipeline ID: <span class="text-primary">#{{pipeline_id}}</span></h6>
+          <h6>pipeline ID: <a href="{{data.web_url}}">{{pipeline_id}}</a></h6>
         </div>
         <div id="automated-alljobs-doughnut" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
