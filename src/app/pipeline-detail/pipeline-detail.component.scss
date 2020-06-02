@@ -201,12 +201,16 @@
 
 .link-stage-line {
   border-top: #dee2e6 solid 2px;
-  width: 5px;
+  width: 30%;
+  max-width: 1.5rem;
   position: relative;
   top: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .link-stage-line:nth-last-child(1) {
   border-top: none;
+  width: 0;
 }
 
 .fo-sz-16 {
@@ -245,4 +249,12 @@
 .carousel-control-next,
 .carousel-control-prev {
     filter: invert(100%);
+}
+.stage-name-header{
+  position: sticky;
+  top: 0;
+}
+.p-l-r-6{
+  padding-left: 6px;
+  padding-right: 6px;
 }
