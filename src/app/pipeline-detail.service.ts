@@ -57,7 +57,7 @@ export class PipelineDetailService {
   async getPipelineMetrics(platform , start ,end){
     try {
       // https://oep-pipelines.mayadata.io/api/metrics?platform=rancher_pipelines&start='2020-06-01'&end='2020-06-06'
-      let GenURL = `http://localhost:3000/api/metrics?platform=${platform}&start='${start}'&end='${end}'`
+      let GenURL = `/api/metrics?platform=${platform}&start='${start}'&end='${end}'`
       // const headerDict = {
       //   // 'Content-Type': 'application/json',
       //   // 'Accept': 'application/json',
