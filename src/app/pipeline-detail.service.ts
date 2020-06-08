@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from "rxjs/operators";
 import { Router } from '@angular/router';
 
@@ -22,9 +22,9 @@ export class PipelineDetailService {
   constructor(private http: HttpClient, private router: Router) {
     this.host = window.location.host;
     if ((this.host.toString().indexOf("localhost") + 1) && this.host.toString().indexOf(":")) {
-      this.awsData = "http://localhost:3000/api/aws";
-      this.konvoyPipelineData = "http://localhost:3000/api/konvoy";
-      this.rancherPipelineData = "http://localhost:3000/api/rancher";
+      this.awsData = "https://oep-pipelines.mayadata.io/api/aws";
+      this.konvoyPipelineData = "https://oep-pipelines.mayadata.io/api/konvoy";
+      this.rancherPipelineData = "https://oep-pipelines.mayadata.io/api/rancher";
 
 
     } else if (this.host == "0.0.0.0:4200") {
@@ -52,6 +52,29 @@ export class PipelineDetailService {
     else if (backend == "rancher") {
       this.backendData = await this.http.get<any>(this.rancherPipelineData).toPromise();
       return this.backendData;
+    }
+  }
+  async getPipelineMetrics(platform , start ,end){
+    try {
+      // https://oep-pipelines.mayadata.io/api/metrics?platform=rancher_pipelines&start='2020-06-01'&end='2020-06-06'
+      let GenURL = `/api/metrics?platform=${platform}&start='${start}'&end='${end}'`
+      // const headerDict = {
+      //   // 'Content-Type': 'application/json',
+      //   // 'Accept': 'application/json',
+      //   // 'Access-Control-Allow-Headers': 'Content-Type',
+      //   'Access-Control-Allow-Origin':'*',
+      //   'Access-Control-Expose-Headers':'Authorization',
+      //   'Access-Control-Allow-Headers': 'Accept, Content-Type, Content-Length, Accept-Encoding, Authorization,X-CSRF-Token',
+
+      // }
+      // const requestOptions = {                                                                                                                                                                                 
+      //   headers: new HttpHeaders(headerDict), 
+      // };
+       let data =   await this.http.get<any>(GenURL).toPromise();
+       return data;
+    } catch (error) {
+      console.log("metrics Error  :  - - -- -  ", error);
+      
     }
   }
 }

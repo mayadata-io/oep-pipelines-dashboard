@@ -36,31 +36,10 @@ export class PipelineDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getApiData(); //get api data from service , every 10s data will refresh .
-
-    $(function () {
-      $('input[type="checkbox"]').change(function () {
-        // We check if one or more checkboxes are selected
-        // If one or more is selected, we perform filtering
-        if ($('input[type="checkbox"]:checked').length > 0) {
-          // Get values all checked boxes
-          var vals = $('input[type="checkbox"]:checked').map(function () {
-            return this.value;
-          }).get();
-          // two things to table rows
-          // 1. We hide all
-          // 2. Then we filter, show those project whose value in second  <td> and class of project-name matches checkbox value
-          $('table tr')
-            .hide()    // 1
-            .filter(function () {
-              // display row which have checkbox value and .project-name value
-              return vals.indexOf($(this).find('td .project-name').text()) > -1;
-            }).show();
-        } else {
-          // Show all
-          $('table tr').show();
-        }
-      });
-    });
+    this.pipelineDetailService.getPipelineMetrics('rancher_pipelines','2020-06-01','2020-06-06').then(metrics =>{
+      console.log("data --> ",metrics);
+      
+    })
   }
   getApiData() {
     this.id = timer(0, 10000).subscribe(x => {
