@@ -36,25 +36,21 @@ export class PipelineDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getApiData(); //get api data from service , every 10s data will refresh .
-    this.pipelineDetailService.getPipelineMetrics('rancher_pipelines','2020-06-01','2020-06-06').then(metrics =>{
-      console.log("data --> ",metrics);
-      
-    })
   }
   getApiData() {
     this.id = timer(0, 10000).subscribe(x => {
-      this.pipelineDetailService.getPipelinesData('rancher').then(res => {
-        this.rancherPipelineData = res.dashboard
+      this.pipelineDetailService.getPipelinesData('aws').then(res => {
+        this.awsData = res.dashboard
         if (!this.ifInit){
-          this.platformChange('rancher');
+          this.platformChange('aws');
           this.ifInit = true;
         }
       })
       this.pipelineDetailService.getPipelinesData('konvoy').then(res => {
         this.konvoyPipelineData = res.dashboard
       })
-      this.pipelineDetailService.getPipelinesData('aws').then(res => {
-        this.awsData = res.dashboard
+      this.pipelineDetailService.getPipelinesData('rancher').then(res => {
+        this.rancherPipelineData = res.dashboard
       })
     })
   }
