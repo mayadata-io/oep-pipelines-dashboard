@@ -194,6 +194,7 @@ export class PipelineDetailComponent implements OnInit {
     let canceledLength = stageJobs.filter(j => j.status == "canceled").length
     let runningLength = stageJobs.filter(j => j.status == "running").length
     let skippedLength = stageJobs.filter(j => j.status == "skipped").length
+    let createdLength = stageJobs.filter(j => j.status == "created").length
     if (runningLength) {
       return "running"
     } else if (canceledLength) {
@@ -202,6 +203,8 @@ export class PipelineDetailComponent implements OnInit {
       return "skipped"
     } else if (failedLength) {
       return "failed"
+    } else if (createdLength) {
+      return "created"
     } else {
       return 'success'
     }
@@ -217,6 +220,8 @@ export class PipelineDetailComponent implements OnInit {
         return 'stageSkipped'
       case "canceled":
         return 'stageCanceled'
+      case "created":
+        return 'stagePending'
 
     }
 
@@ -234,7 +239,7 @@ export class PipelineDetailComponent implements OnInit {
         return "fo-sz-16 far fa-dot-circle text-warning bg-white shadow-txt p-1 margin-status-icon border rounded-circle"
       case 'running':
         return "fo-sz-16 fa fa-circle-o-notch btn-txt fa-spin btn-outline-primary bg-white shadow-txt p-1 margin-status-icon border rounded-circle"
-      case 'pending':
+      case 'created':
         return "fo-sz-16 fa fa-exclamation-triangle text-warning bg-white shadow-txt p-1 margin-status-icon border rounded-circle"
       case 'skipped':
         return "fo-sz-16 fas fa-angle-double-right text-secondary bg-white shadow-txt p-1 margin-status-icon border rounded-circle"
