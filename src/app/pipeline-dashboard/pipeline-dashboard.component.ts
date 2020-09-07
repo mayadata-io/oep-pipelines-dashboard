@@ -5,6 +5,8 @@ import { Meta, Title } from '@angular/platform-browser';
 import { PipelineDetailService } from '../pipeline-detail.service';
 import * as moment from 'moment';
 import * as dateformat from 'dateformat';
+import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material';
+import { compileFactoryFunction } from '@angular/compiler/src/render3/r3_factory';
 
 
 
@@ -16,7 +18,7 @@ import * as dateformat from 'dateformat';
 })
 export class PipelineDashboardComponent implements OnInit {
   id: any;
-  projects = ['maya-ui', 'maya-io-server', 'maya-kibana', 'maya-chatops', 'Grafana', 'graph-reporter', 'cloud-agent', 'director-vendor'];
+  // projects = ['maya-ui', 'maya-io-server', 'maya-kibana', 'maya-chatops', 'Grafana', 'graph-reporter', 'cloud-agent', 'director-vendor'];
   dashboardCommitData: any;
   pipelineData: any;
   konvoyPipelineData: any;
@@ -24,8 +26,13 @@ export class PipelineDashboardComponent implements OnInit {
   buildData: any;
   subscribe = false;
   awsData: any;
-  activePlatform: any;
-  ifInit = false ;
+  activePlatform = 'none';
+  ifInit = false;
+  awsPipelinesCount: number = 0;
+  konvoyPipelinesCount: number = 0;
+  rancherPipelinesCount: number = 0;
+
+
 
 
   constructor(private meta: Meta, private titleService: Title, private pipelineDetailService: PipelineDetailService) {
@@ -40,22 +47,26 @@ export class PipelineDashboardComponent implements OnInit {
   getApiData() {
     this.id = timer(0, 10000).subscribe(x => {
       this.pipelineDetailService.getPipelinesData('aws').then(res => {
+        this.awsPipelinesCount = res.pipelineCount
         this.awsData = res.dashboard
-        if (!this.ifInit){
+        if (!this.ifInit) {
           this.platformChange('aws');
           this.ifInit = true;
         }
       })
       this.pipelineDetailService.getPipelinesData('konvoy').then(res => {
+        this.konvoyPipelinesCount = res.pipelineCount
         this.konvoyPipelineData = res.dashboard
       })
       this.pipelineDetailService.getPipelinesData('rancher').then(res => {
+        this.rancherPipelinesCount = res.pipelineCount
         this.rancherPipelineData = res.dashboard
       })
     })
   }
 
   platformChange(platform) {
+    this.activePlatform = "none";
     switch (platform) {
       case "aws":
         this.pipelineData = this.awsData
@@ -74,11 +85,11 @@ export class PipelineDashboardComponent implements OnInit {
 
     }
   }
-  platformBtn(activePlatform , btnPlatform){
-    if (activePlatform == btnPlatform){
+  platformBtn(activePlatform, btnPlatform) {
+    if (activePlatform == btnPlatform) {
       return 'activePlatformBtn shadow'
-    }else{
-      return 'deactivePlatformBtn'
+    } else {
+      return 'deactivePlatformBtn border bg-light border-primary rounded text-secondary'
     }
   }
   versionFunc(ver) {
@@ -177,8 +188,8 @@ export class PipelineDashboardComponent implements OnInit {
             count++;
           }
         })
-        var percentage = (count / jobs.length) * 100;
-        return `${percentage} ${100 - percentage}`
+        var percentage = (count / jobs.length) * 95;
+        return `${percentage} ${95 - percentage}`
       }
       else if (pipeline.status == "running") {
         return "95 5";
@@ -268,5 +279,48 @@ export class PipelineDashboardComponent implements OnInit {
   }
 
 
+  genPages(platform: string, rowsPerPage: number): number[] {
+    let cal;
+    let n: number;
 
+    switch (platform) {
+      case 'aws':
+        cal = this.awsPipelinesCount / rowsPerPage
+        n = Math.trunc(cal + 1)
+        // console.log(n);
+        return [...Array(n)];
+      case 'konvoy':
+        cal = this.konvoyPipelinesCount / rowsPerPage
+        n = Math.trunc(cal + 1)
+        // console.log(n);
+        return [...Array(n)];
+      case 'rancher':
+        cal = this.rancherPipelinesCount / rowsPerPage
+        n = Math.trunc(cal + 1)
+        // console.log(n);
+        return [...Array(n)];
+    }
+  }
+  async setPageInSession(key: string, value: string) {
+    sessionStorage.setItem(key + 'Page', value)
+    await this.clearfunc()
+    this.getApiData();
+    this.platformChange(key);
+  }
+  clearfunc() {
+    this.id.unsubscribe();
+    // this.awsData == {};
+    this.pipelineData = {};
+    this.activePlatform = "none";
+  }
+
+  getActivePage() {
+    let get = (sessionStorage.getItem(this.activePlatform+'Page'))
+    if (get != null){
+      return get
+    }
+    else {
+      return '00'
+    }
+  }
 }

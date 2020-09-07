@@ -1,14 +1,17 @@
 <div class="container-fluid mt-2 p-0">
-	<div class="row">
+	<div class="row h-100">
 		<div class="col-md-3 shadow bg-light">
 			<div class="mt-5">
-				<div [ngClass]="platformBtn(activePlatform, 'aws')"  class="rounded py-2 px-1 text-center" (click)="platformChange('aws')" >AWS</div>
+				<div [ngClass]="platformBtn(activePlatform, 'aws')" class="rounded py-2 px-1 text-center"
+					(click)="platformChange('aws')">AWS</div>
 			</div>
 			<div class="mt-5">
-				<div [ngClass]="platformBtn(activePlatform, 'rancher')" class="rounded py-2 px-1 text-center" (click)="platformChange('rancher')">Rancher</div>
+				<div [ngClass]="platformBtn(activePlatform, 'rancher')" class="rounded py-2 px-1 text-center"
+					(click)="platformChange('rancher')">Rancher</div>
 			</div>
 			<div class="mt-5">
-				<div [ngClass]="platformBtn(activePlatform, 'konvoy')"  class="rounded py-2 px-1 text-center" (click)="platformChange('konvoy')" >Konvoy</div>
+				<div [ngClass]="platformBtn(activePlatform, 'konvoy')" class="rounded py-2 px-1 text-center"
+					(click)="platformChange('konvoy')">Konvoy</div>
 			</div>
 		</div>
 		<div class="col-md-9">
@@ -28,17 +31,21 @@
 									routerLinkActive="active" target="_blank">{{pipeline.pipelineid}}
 								</a>
 							</td>
-							<td><span *ngIf="pipeline.jobs != null;else jobNotPresent">{{getTriggerTime(pipeline.jobs[0].started_at)}} ago</span>
-							<ng-template #jobNotPresent>
-								<span>NA</span>
-							</ng-template>
+							<td><span
+									*ngIf="pipeline.jobs != null;else jobNotPresent">{{getTriggerTime(pipeline.jobs[0].started_at)}}
+									ago</span>
+								<ng-template #jobNotPresent>
+									<span>NA</span>
+								</ng-template>
 							</td>
 							<td>{{pipeline.release_tag}}</td>
 							<td>
 								<a routerLink="pipeline/e2e-test/{{pipeline.pipelineid}}/platform/{{activePlatform}}"
 									routerLinkActive="active" target="_blank">
 									<div *ngIf="pipeline.status !== '';else pipelineNotTrigger">
-										<div *ngIf="pipeline.jobs !== null;else pipelineNotTrigger" class="d-inline-block" ngbTooltip="{{ pipelineTooltip(pipeline)}}" placement="right">
+										<div *ngIf="pipeline.jobs !== null;else pipelineNotTrigger"
+											class="d-inline-block" ngbTooltip="{{ pipelineTooltip(pipeline)}}"
+											placement="right">
 											<i *ngIf="pipelineTooltip(pipeline) == 'running';else doughutNotFound"
 												class="fas fa-circle-notch text-primary font-size-23 fa-spin"></i>
 											<ng-template #doughutNotFound>
@@ -71,10 +78,10 @@
 										</div>
 									</div>
 								</a>
-							<ng-template #pipelineNotTrigger>
-								<i class="fa fa-ban text-secondary font-size-23" ngbTooltip="E2E Pipeline Not Triggered"
-									placement="right"></i>
-							</ng-template>
+								<ng-template #pipelineNotTrigger>
+									<i class="fa fa-ban text-secondary font-size-23"
+										ngbTooltip="E2E Pipeline Not Triggered" placement="right"></i>
+								</ng-template>
 							</td>
 							<td class="coverage-content">
 								<div *ngIf="pipelineTooltip(pipeline) != '' && pipeline.coverage != 'NA' && pipeline.coverage != '' ;else coverageNA"
@@ -89,15 +96,32 @@
 									</svg>
 									<span style="font-size: 12px;">{{pipeline.coverage}}</span>
 								</div>
-
-							<ng-template #coverageNA>
-								<span class="text-dark">NA</span>
-							</ng-template>
+								<ng-template #coverageNA>
+									<span class="text-dark">NA</span>
+								</ng-template>
 							</td>
 						</tr>
 					</tbody>
 				</table>
+				<!-- Pagination table footer 
+				TODO : -  active page should be highlighted
+				- Add condition to hide footer untill API load
+			     -->
+
+				<div class="row mb-5 border-top pt-1">
+					<div class="col-md-5 my-auto text-secondary">per_page : 20</div>
+					<div class="col-md-4 my-auto text-secondary">Page : {{getActivePage()}}</div>
+					<div class="col-md-3 d-flex flex-row justify-content-around">
+						<button *ngFor="let ing of genPages(activePlatform , 20); let i = index;" type="button"
+							class="btn btn-sm btn-outline-primary" (click)="setPageInSession(activePlatform,i)">
+							{{i}}
+						</button>
+					</div>
+				</div>
 			</div>
+			<ng-template #loadingSpinnerIcon>
+				<app-lodding-spinners></app-lodding-spinners>
+			</ng-template>
 		</div>
 	</div>
 </div>
