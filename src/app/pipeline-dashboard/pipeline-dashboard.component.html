@@ -18,7 +18,7 @@
 			<div class="e2e-table">
 				<table class="table table-hover" id="table-e2e" style="table-layout: fixed;">
 					<thead>
-						<th>Pipeline ID</th>
+						<th>Pipeline ID - <span class="font-size-14 font-italic text-secondary">Branch</span></th>
 						<th>Started_at</th>
 						<th>ReleaseTag</th>
 						<th>E2E Result</th>
@@ -26,10 +26,11 @@
 					</thead>
 					<tbody>
 						<tr *ngFor="let pipeline of pipelineData">
-							<td>
+							<td class="d-flex">
 								<a routerLink="pipeline/e2e-test/{{pipeline.pipelineid}}/platform/{{activePlatform}}"
 									routerLinkActive="active" target="_blank">{{pipeline.pipelineid}}
 								</a>
+								<span class="font-italic text-secondary font-size-14" >- {{pipeline.ref}}</span>
 							</td>
 							<td><span
 									*ngIf="pipeline.jobs != null;else jobNotPresent">{{getTriggerTime(pipeline.jobs[0].started_at)}}
