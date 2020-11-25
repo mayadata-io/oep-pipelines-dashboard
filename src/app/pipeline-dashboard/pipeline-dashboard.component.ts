@@ -49,14 +49,14 @@ export class PipelineDashboardComponent implements OnInit {
       this.pipelineDetailService.getPipelinesData('aws').then(res => {
         this.awsPipelinesCount = res.pipelineCount
         this.awsData = res.dashboard
-        if (!this.ifInit) {
-          this.platformChange('aws');
-          this.ifInit = true;
-        }
       })
       this.pipelineDetailService.getPipelinesData('konvoy').then(res => {
         this.konvoyPipelinesCount = res.pipelineCount
         this.konvoyPipelineData = res.dashboard
+        if (!this.ifInit) {
+          this.platformChange('konvoy');
+          this.ifInit = true;
+        }
       })
       this.pipelineDetailService.getPipelinesData('rancher').then(res => {
         this.rancherPipelinesCount = res.pipelineCount
